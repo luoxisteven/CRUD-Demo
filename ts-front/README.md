@@ -1,6 +1,6 @@
 # Tasks React Frontend
 
-A simple, minimalistic React TypeScript frontend application for managing tasks. This frontend connects to a Node.js REST API backend to perform CRUD operations on tasks.
+A simple, minimalistic React TypeScript frontend application for managing tasks. This frontend connects to a Node.js backend switching between RestAPI and GraphQL to perform CRUD operations on tasks.
 
 ## Layout
 ![image](../img/website.jpg)
@@ -20,6 +20,7 @@ A simple, minimalistic React TypeScript frontend application for managing tasks.
 - TypeScript
 - Vite (for fast development and building)
 - CSS (plain, no frameworks)
+- RestAPI / GraphQL
 
 ## Project Structure
 
@@ -49,6 +50,10 @@ In `src/api/taskApi.ts`, make sure the `API_URL` constant points to your backend
 ```typescript
 const API_URL = 'http://localhost:3000/api';
 ```
+
+3. Choose your own API type:
+    - By default, we use RestAPI.
+    - If you want to swtich from RestAPI to GraphQL, you need to change the reference `import { taskApi } from '../api/taskRestAPI';` to `import { taskApi } from '../api/taskGraphQL;` in `hooks/useTasks.tsx`
 
 ## Initialize the project
 ```bash

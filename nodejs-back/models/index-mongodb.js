@@ -13,6 +13,7 @@ const syncDatabase = async () => {
 };
 
 // Task Schema & Model
+// type: Number, Date, Boolean
 const Task = mongoose.model('Task', new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, default: '' },
@@ -21,7 +22,7 @@ const Task = mongoose.model('Task', new mongoose.Schema({
     enum: ['To Do', 'In Progress', 'Done'],
     default: 'To Do'
   }
-}, { timestamps: true, versionKey: false }));
+}, { timestamps: true}));
 
 // Sequelize-compatible API methods
 Task.findAll = async () => Task.find().sort({ createdAt: -1 });

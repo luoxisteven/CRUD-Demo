@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dotnet-back")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfea78b6be4fa88e7c0a40855370c46e1f031950")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+223c5f647138af5223ffddde71380f9bf1d47c68")]
 [assembly: System.Reflection.AssemblyProductAttribute("dotnet-back")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dotnet-back")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

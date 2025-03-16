@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Task, TaskFormData } from '../types/Task';
-import { taskApi } from '../api/taskApi';
+import { taskApi } from '../api/taskRestAPI';
 
 export const useTasks = () => {
   const [tasks, setTasks] = useState<Task[]>([]);

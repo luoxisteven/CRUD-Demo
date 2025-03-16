@@ -30,16 +30,22 @@ Each task includes:
 npm install
 ```
 
-2. Choose your own Database:
-    - `index.js` is designed for `MySQL`.
-    - You can change any `index-**.js` to `index.js` to use that type of database.
+2. Choose your API:
+    - Either choosing `RestAPI` or `GraphQL`
+    - Change the filename of `routes/task-graphql.js` to `routes/task.js`
+    - Make sure `app.js` refers to correct `routes/task.js`
 
-3. Configure the database:
+3. Choose your own Database:
+    - `models/index.js` is designed for `MySQL`.
+    - You can change any `models/index-**.js` to `index.js` to use that type of database.
+    - Make sure `routes/tasks.js` refers to correct `index.js`.
+
+4. Configure the database:
    - Open `.env.example`
    - Modify the Database connection settings (username, password, host) to match your environment
    - Change filename of `.env.example` to `.env`
 
-4. Start the server:
+5. Start the server:
 ```bash
 npm start
 ```
@@ -136,4 +142,5 @@ npm install express mysql2 sequelize dotenv cors mongoose
 - Sequelize: ORM for MySQL database interactions
 - Mongoose: ORM for MongoDB interactions
 - Dotenv: Configuration management
+- Express-GraphQL: Create GraphQL API
 - Cors: For cross-origin resource sharing (CORS)

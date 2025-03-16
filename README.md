@@ -1,9 +1,16 @@
 # CRUD-Demo
 
-A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) operations implemented with different backend frameworks, and diferent databases while maintaining a consistent frontend. This repo features minimalistic code and package usage, designed for interview scenarios and code tests.
+A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) operations implemented with the ability to switch between different backend frameworks, databases, and API patterns while maintaining a consistent frontend. This repository features minimalistic code and package usage, designed for interview scenarios and code tests.
+
+- @Author: Steven Luo
+- @Email: steven@xiluo.net
 
 ## Website Layout
 ![image](img/website.jpg)
+
+## TO DO
+1) Django
+2) GraphQL
 
 ## System Architecture
 
@@ -13,7 +20,6 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
   - Django
 
 - **Frontend**: React with TypeScript
-
 - **Database**: MySQL, MongoDB, JSON
 
 ## API Endpoints
