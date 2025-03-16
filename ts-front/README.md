@@ -52,11 +52,14 @@ const API_URL = 'http://localhost:3000/api';
 
 ## Initialize the project
 ```bash
+# Upgrade your node
+nvm install --lts
+
 npm create vite@latest ts-front -- --template react-ts
 cd ts-front
 npm install
 
-## From Beginning
+# From Beginning
 npm install axios
 ```
 

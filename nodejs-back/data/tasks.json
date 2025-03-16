@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Mission Impossible",
+    "description": "Save the world",
+    "status": "To Do",
+    "createdAt": "2025-03-16T04:09:23.765Z",
+    "updatedAt": "2025-03-16T04:54:04.272Z"
+  },
+  {
+    "id": 2,
+    "title": "Task 1",
+    "description": "Finish your Master's Degree",
+    "status": "Done",
+    "createdAt": "2025-03-16T04:10:24.254Z",
+    "updatedAt": "2025-03-16T04:53:40.392Z"
+  },
+  {
+    "id": 3,
+    "title": "Task 2",
+    "description": "Get better job",
+    "status": "In Progress",
+    "createdAt": "2025-03-16T04:28:57.792Z",
+    "updatedAt": "2025-03-16T04:53:59.294Z"
+  }
+]

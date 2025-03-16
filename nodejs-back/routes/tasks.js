@@ -56,13 +56,13 @@ router.put('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Task not found' });
     }
     
-    await task.update({
+    const updatedTask = await task.update({
       title: title || task.title,
       description: description !== undefined ? description : task.description,
       status: status || task.status
     });
     
-    res.json(task);
+    res.json(updatedTask);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

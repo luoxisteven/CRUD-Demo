@@ -1,138 +1,122 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-// 数据文件路径
+// Data file path
 const dataPath = path.join(__dirname, '../data/tasks.json');
 
-// 确保目录存在
-const ensureDirectoryExists = async () => {
-  const dir = path.dirname(dataPath);
-  try {
-    await fs.mkdir(dir, { recursive: true });
-    console.log(`Directory ${dir} created or already exists`);
-  } catch (error) {
-    console.error('Error creating directory:', error);
-    throw error;
-  }
-};
-
-// 读取任务数据
-const readTasks = async () => {
+// Read tasks data
+async function readTasks() {
   try {
     const data = await fs.readFile(dataPath, 'utf8');
     return JSON.parse(data);
   } catch (error) {
-    // 如果文件不存在，返回空数组
+    // Return empty array if file doesn't exist
     if (error.code === 'ENOENT') {
       return [];
     }
     throw error;
   }
-};
+}
 
-// 写入任务数据
-const writeTasks = async (tasks) => {
+// Write tasks data
+async function writeTasks(tasks) {
   await fs.writeFile(dataPath, JSON.stringify(tasks, null, 2));
-};
+}
 
-// Task 模型
+// Task model
 const Task = {
-  // 查找所有任务
+  // Find all tasks
   findAll: async () => {
-    return await readTasks();
+    const tasks = await readTasks();
+    return tasks.map(task => Task.attachMethods(task));
   },
 
-  // 通过ID查找任务
+  // Find task by ID
   findByPk: async (id) => {
     const tasks = await readTasks();
-    return tasks.find(task => task.id === parseInt(id)) || null;
+    const task = tasks.find(task => task.id === parseInt(id));
+    return task ? Task.attachMethods(task) : null;
   },
 
-  // 创建新任务
+  // Create new task
   create: async (taskData) => {
     const tasks = await readTasks();
+    const newId = tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 1;
     
-    // 生成新ID (取最大ID + 1或从1开始)
-    const newId = tasks.length > 0 
-      ? Math.max(...tasks.map(task => task.id)) + 1 
-      : 1;
-    
-    const now = new Date();
     const newTask = {
       id: newId,
       title: taskData.title,
       description: taskData.description || null,
       status: taskData.status || 'To Do',
-      createdAt: now,
-      updatedAt: now
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
     
     tasks.push(newTask);
     await writeTasks(tasks);
-    return newTask;
+    return Task.attachMethods(newTask);
   },
 
-  // 更新任务
-  update: async function(taskData) {
-    const tasks = await readTasks();
-    const index = tasks.findIndex(task => task.id === this.id);
-    
-    if (index === -1) {
-      throw new Error('Task not found');
-    }
-    
-    // 更新任务
-    const updatedTask = {
-      ...tasks[index],
-      title: taskData.title || tasks[index].title,
-      description: taskData.description !== undefined ? taskData.description : tasks[index].description,
-      status: taskData.status || tasks[index].status,
-      updatedAt: new Date()
+  // Attach methods to task object
+  attachMethods: (taskData) => {
+    return {
+      ...taskData,
+      // Update task
+      update: async (updateData) => {
+        const tasks = await readTasks();
+        const index = tasks.findIndex(t => t.id === taskData.id);
+        
+        if (index === -1) throw new Error('Task not found');
+        
+        const updatedTask = {
+          ...tasks[index],
+          ...updateData,
+          updatedAt: new Date()
+        };
+        
+        tasks[index] = updatedTask;
+        await writeTasks(tasks);
+        return Task.attachMethods(updatedTask);
+      },
+
+      // Delete task
+      destroy: async () => {
+        const tasks = await readTasks();
+        const filteredTasks = tasks.filter(t => t.id !== taskData.id);
+        
+        if (filteredTasks.length === tasks.length) {
+          throw new Error('Task not found');
+        }
+        
+        await writeTasks(filteredTasks);
+        return true;
+      }
     };
-    
-    tasks[index] = updatedTask;
-    await writeTasks(tasks);
-    return updatedTask;
-  },
-
-  // 删除任务
-  destroy: async function() {
-    const tasks = await readTasks();
-    const updatedTasks = tasks.filter(task => task.id !== this.id);
-    
-    if (updatedTasks.length === tasks.length) {
-      throw new Error('Task not found');
-    }
-    
-    await writeTasks(updatedTasks);
-    return true;
   }
 };
 
-// 初始化数据存储
-const syncDatabase = async () => {
+// Initialize data storage
+async function syncDatabase() {
   try {
-    // 确保目录存在
-    await ensureDirectoryExists();
+    // Ensure directory exists
+    await fs.mkdir(path.dirname(dataPath), { recursive: true });
     
-    // 确保文件存在
+    // Ensure file exists
     try {
       await fs.access(dataPath);
     } catch (error) {
-      // 如果文件不存在，创建一个空的JSON数组
       if (error.code === 'ENOENT') {
         await writeTasks([]);
-        console.log(`Created empty tasks file at ${dataPath}`);
       } else {
         throw error;
       }
     }
     
-    console.log('JSON storage ready');
+    console.log('Database synchronized');
   } catch (error) {
-    console.error('Error initializing JSON storage:', error);
+    console.error('Error syncing database:', error);
     throw error;
   }
-};
+}
 
 module.exports = { Task, syncDatabase };
