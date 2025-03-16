@@ -1,20 +1,23 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const mysql = require('mysql2/promise');
-const config = require('../config/config').development;
+require('dotenv').config();
+
+// const config = require('../config/config');
+// config.DB_HOST
 
 // Function to create database if it doesn't exist
 const createDatabaseIfNotExists = async () => {
   try {
     // Create a connection without specifying a database
     const connection = await mysql.createConnection({
-      host: config.host,
-      user: config.username,
-      password: config.password
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD
     });
     
     // Create the database if it doesn't exist
-    await connection.query(`CREATE DATABASE IF NOT EXISTS ${config.database}`);
-    console.log(`Database ${config.database} created or already exists`);
+    await connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME}`);
+    console.log(`Database ${process.env.DB_NAME} created or already exists`);
     
     // Close the connection
     await connection.end();
@@ -26,12 +29,12 @@ const createDatabaseIfNotExists = async () => {
 
 // Create Sequelize instance
 const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
   {
-    host: config.host,
-    dialect: config.dialect
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT
   }
 );
 

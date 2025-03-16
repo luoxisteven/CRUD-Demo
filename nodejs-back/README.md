@@ -1,6 +1,6 @@
 # Task Manager - Node.js
 
-A simple RESTful API for task management built with Node.js, Express.js, MySQL, and Sequelize.
+A simple RESTful API for task management built with Node.js, Express.js and Database MySQL, or MongoDB, or JSON.
 
 ## Features
 
@@ -20,6 +20,8 @@ Each task includes:
 
 - Node.js
 - MySQL
+- or MongoDB
+- or JSON
 
 ## Installation
 
@@ -28,12 +30,16 @@ Each task includes:
 npm install
 ```
 
-2. Configure the database:
+2. Choose your own Database:
+    - `index.js` is designed for `MySQL`.
+    - You can change any `index-**.js` to `index.js` to use that type of database.
+
+3. Configure the database:
    - Open `.env.example`
-   - Modify the MySQL connection settings (username, password, host) to match your environment
+   - Modify the Database connection settings (username, password, host) to match your environment
    - Change filename of `.env.example` to `.env`
 
-3. Start the server:
+4. Start the server:
 ```bash
 npm start
 ```
@@ -123,10 +129,11 @@ task-manager-api/
 
 ## Dependencies
 ```bash
-npm install express mysql2 sequelize dotenv cors
+npm install express mysql2 sequelize dotenv cors mongoose
 ```
 - Express.js: Web framework
 - MySQL2: MySQL database driver
-- Sequelize: ORM for database interactions
+- Sequelize: ORM for MySQL database interactions
+- Mongoose: ORM for MongoDB interactions
 - Dotenv: Configuration management
 - Cors: For cross-origin resource sharing (CORS)

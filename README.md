@@ -1,6 +1,6 @@
 # CRUD-Demo
 
-A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) operations implemented with different backend frameworks while maintaining a consistent frontend. This repo features minimalistic code and package usage, designed for interview scenarios and code tests.
+A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) operations implemented with different backend frameworks, and diferent databases while maintaining a consistent frontend. This repo features minimalistic code and package usage, designed for interview scenarios and code tests.
 
 ## Website Layout
 ![image](img/website.jpg)
@@ -14,7 +14,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 
 - **Frontend**: React with TypeScript
 
-- **Database**: MySQL
+- **Database**: MySQL, MongoDB, JSON
 
 ## API Endpoints
 
