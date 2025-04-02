@@ -18,8 +18,8 @@ Each task includes:
 
 ## Prerequisites
 
-- Node.js
-- MySQL
+- Node.js (by default)
+- MySQL (by default)
 - or MongoDB
 - or JSON
 

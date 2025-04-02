@@ -44,7 +44,7 @@ Each task contains:
 
 - [.NET Backend Documentation](dotnet-back/README.md)
 - [Node.js Backend Documentation](nodejs-back/README.md)
-- [React Frontend Documentation](ts-front/README.md)
+- [React Frontend Documentation](react-front/README.md)
 
 ## Purpose
 

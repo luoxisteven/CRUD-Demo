@@ -1,0 +1,45 @@
+@use '../../styles/task.module.scss' as *;
+
+.card {
+  @include card;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  
+  input, textarea, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid $gray-light;
+    border-radius: 4px;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+  
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  
+  button {
+    @include button;
+    
+    &[type="submit"] {
+      background-color: $primary-color;
+      color: white;
+    }
+    
+    &[type="button"] {
+      background-color: $gray-light;
+    }
+  }
+}

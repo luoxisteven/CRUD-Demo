@@ -1,0 +1,45 @@
+@use '../../styles/task.module' as *;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  @include card;
+}
+
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid $gray-light;
+  }
+  
+  button {
+    @include button;
+    margin-right: 8px;
+    
+    &:first-child {
+      background-color: $primary-color;
+      color: white;
+    }
+    
+    &:last-child {
+      background-color: $danger-color;
+      color: white;
+    }
+  }
+}
+
+.error-message {
+  color: $danger-color;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  background-color: rgba($danger-color, 0.1);
+}

@@ -75,3 +75,6 @@ C:\Users\ITM-STEVEN-01\Desktop\Projects\CRUD-Demo\dotnet-back\obj\Debug\net8.0\r
 C:\Users\ITM-STEVEN-01\Desktop\Projects\CRUD-Demo\dotnet-back\obj\Debug\net8.0\dotnet-back.pdb
 C:\Users\ITM-STEVEN-01\Desktop\Projects\CRUD-Demo\dotnet-back\obj\Debug\net8.0\dotnet-back.genruntimeconfig.cache
 C:\Users\ITM-STEVEN-01\Desktop\Projects\CRUD-Demo\dotnet-back\obj\Debug\net8.0\ref\dotnet-back.dll
+C:\Users\ITM-STEVEN-01\Desktop\Projects\CRUD-Demo\dotnet-back\bin\Debug\net8.0\dotnet-back.staticwebassets.endpoints.json
+C:\Users\ITM-STEVEN-01\Desktop\Projects\CRUD-Demo\dotnet-back\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\ITM-STEVEN-01\Desktop\Projects\CRUD-Demo\dotnet-back\obj\Debug\net8.0\staticwebassets\msbuild.dotnet-back.Microsoft.AspNetCore.StaticWebAssetEndpoints.props

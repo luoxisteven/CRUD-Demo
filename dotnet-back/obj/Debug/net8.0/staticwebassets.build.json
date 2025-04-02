@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "UCMVopbZ4IvAMG68P+hzloV9QelkPCzBkoS0tkZX29E=",
+  "Hash": "GRbUxCcO6LHAk8hnm0bVHGCXhZ+7frYiFOP+aM2a9C0=",
   "Source": "dotnet-back",
   "BasePath": "_content/dotnet-back",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

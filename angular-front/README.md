@@ -57,3 +57,10 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+## Generate route
+# src/app/modules/task
+ng generate module modules/task --routing
+ng generate component modules/task/pages/task-list
+ng generate component modules/task/components/task-form
