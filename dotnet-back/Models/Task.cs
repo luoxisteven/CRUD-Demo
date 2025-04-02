@@ -17,8 +17,10 @@ namespace TaskManager.Api.Models
         [Required]
         public string Status { get; set; } = "To Do";
 
+        [Column(TypeName = "timestamp")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+        [Column(TypeName = "timestamp")]
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 
