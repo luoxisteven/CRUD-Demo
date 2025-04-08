@@ -14,7 +14,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<TaskContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-// Add task service
+// Register task service
 // 意味着在同一个 HTTP 请求中会使用同一个 TaskService 实例。
 builder.Services.AddScoped<TaskService>();
 
@@ -31,16 +31,12 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{   
-    // Create database if it doesn't exist
-    using (var scope = app.Services.CreateScope())
-    {
-        var services = scope.ServiceProvider;
-        var context = services.GetRequiredService<TaskContext>();
-        context.Database.EnsureCreated();
-    }
+// Create database if it doesn't exist
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<TaskContext>();
+    context.Database.EnsureCreated();
 }
 
 // Redirect Http to https
@@ -50,6 +46,13 @@ app.UseHttpsRedirection();
 app.UseCors();
 
 // app.UseAuthorization();
+// For Authorize only
+// [Authorize]
+// [HttpGet]
+// public IActionResult GetSecureData()
+// {
+//     return Ok("This is secure data.");
+// }
 
 app.MapControllers();
 

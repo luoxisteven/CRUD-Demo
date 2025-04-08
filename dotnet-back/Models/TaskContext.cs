@@ -10,16 +10,16 @@ namespace TaskManager.Api.Models
 
         public DbSet<Task> Tasks { get; set; } = null!;
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // Configure Task entity
-            modelBuilder.Entity<Task>()
-                .Property(t => t.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     // Configure Task entity
+        //     modelBuilder.Entity<Task>()
+        //         .Property(t => t.CreatedAt)
+        //         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-            modelBuilder.Entity<Task>()
-                .Property(t => t.UpdatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP");
-        }
+        //     modelBuilder.Entity<Task>()
+        //         .Property(t => t.UpdatedAt)
+        //         .HasDefaultValueSql("CURRENT_TIMESTAMP");
+        // }
     }
 }

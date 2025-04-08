@@ -29,8 +29,8 @@ namespace TaskManager.Api.Services
                 Title = taskDto.Title,
                 Description = taskDto.Description,
                 Status = taskDto.Status,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                // CreatedAt = DateTime.UtcNow,
+                // UpdatedAt = DateTime.UtcNow
             };
 
             _context.Tasks.Add(task);
@@ -64,7 +64,7 @@ namespace TaskManager.Api.Services
                 task.Status = taskDto.Status;
             }
 
-            task.UpdatedAt = DateTime.UtcNow;
+            // task.UpdatedAt = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
 
