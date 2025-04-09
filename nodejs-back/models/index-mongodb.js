@@ -22,12 +22,15 @@ const Task = mongoose.model('Task', new mongoose.Schema({
     enum: ['To Do', 'In Progress', 'Done'],
     default: 'To Do'
   }
-}, { timestamps: true}));
+}, 
+// CreatedAt, UpdatedAt
+// { timestamps: true}
+));
 
 // Sequelize-compatible API methods
-Task.findAll = async () => Task.find().sort({ createdAt: -1 });
+Task.findAll = async () => Task.find().sort({ _id: -1 });
 // Task.findAll = async function() {
-//   return await Task.find().sort({ createdAt: -1 });
+//   return await Task.find().sort({ id: -1 });
 // };
 Task.findByPk = async (id) => Task.findById(id);
 // Task.findByPk = async function(id) {

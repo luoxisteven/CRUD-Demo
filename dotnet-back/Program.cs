@@ -5,17 +5,17 @@ using TaskManager.Api.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// 所有集成ControllerBase的都会add
 // e.g. public class TasksController : ControllerBase
+// e.g. public class TasksController : Controller
 builder.Services.AddControllers();
 
-// Add database context
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<TaskContext>(options =>
+// Add MySQL database context
+var connectionString = builder.Configuration.GetConnectionString("MySQLConnection");
+builder.Services.AddDbContext<TaskDBContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // Register task service
-// 意味着在同一个 HTTP 请求中会使用同一个 TaskService 实例。
+// This means that within the same HTTP request, the same TaskService instance will be used.
 builder.Services.AddScoped<TaskService>();
 
 // Add CORS support
@@ -35,7 +35,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<TaskContext>();
+    var context = services.GetRequiredService<TaskDBContext>();
     context.Database.EnsureCreated();
 }
 
@@ -44,15 +44,6 @@ app.UseHttpsRedirection();
 
 // Cors
 app.UseCors();
-
-// app.UseAuthorization();
-// For Authorize only
-// [Authorize]
-// [HttpGet]
-// public IActionResult GetSecureData()
-// {
-//     return Ok("This is secure data.");
-// }
 
 app.MapControllers();
 

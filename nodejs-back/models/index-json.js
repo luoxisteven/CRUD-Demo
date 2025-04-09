@@ -48,8 +48,8 @@ const Task = {
       title: taskData.title,
       description: taskData.description || null,
       status: taskData.status || 'To Do',
-      createdAt: new Date(),
-      updatedAt: new Date()
+      // createdAt: new Date(),
+      // updatedAt: new Date()
     };
     
     tasks.push(newTask);
@@ -71,7 +71,7 @@ const Task = {
         const updatedTask = {
           ...tasks[index],
           ...updateData,
-          updatedAt: new Date()
+          // updatedAt: new Date()
         };
         
         tasks[index] = updatedTask;

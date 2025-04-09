@@ -5,9 +5,9 @@ namespace TaskManager.Api.Services
 {
     public class TaskService
     {
-        private readonly TaskContext _context;
+        private readonly TaskDBContext _context;
 
-        public TaskService(TaskContext context)
+        public TaskService(TaskDBContext context)
         {
             _context = context;
         }
@@ -29,8 +29,6 @@ namespace TaskManager.Api.Services
                 Title = taskDto.Title,
                 Description = taskDto.Description,
                 Status = taskDto.Status,
-                // CreatedAt = DateTime.UtcNow,
-                // UpdatedAt = DateTime.UtcNow
             };
 
             _context.Tasks.Add(task);

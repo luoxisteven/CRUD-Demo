@@ -33,8 +33,8 @@ npm install
 2. Configure the database:
    - Open `.env.example`
    - Modify the Database connection settings (username, password, host) to match your environment
-   - Choose your database type
-   - Change filename of `.env.example` to `.env`
+   - Choose your database type `DB_TYPE` ("json", "mysql", "mongodb"), api type `API_TYPE` ("restapi", "graphql")
+   - Rename filename of `.env.example` into `.env`
 
 3. Start the server:
 ```bash

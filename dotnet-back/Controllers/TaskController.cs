@@ -4,14 +4,14 @@ using TaskManager.Api.Services;
 
 namespace TaskManager.Api.Controllers
 {
-    // api.Task: because the class name TasksController
+    // will be 'api/Tasks': because the class name TasksController
     [Route("api/[controller]")]
     [ApiController]
-    public class TasksController : ControllerBase
+    public class TaskController : ControllerBase
     {
         private readonly TaskService _taskService;
 
-        public TasksController(TaskService taskService)
+        public TaskController(TaskService taskService)
         {
             _taskService = taskService;
         }

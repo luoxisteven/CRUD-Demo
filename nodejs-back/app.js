@@ -3,12 +3,10 @@ require('dotenv').config();
 const DB_TYPE = process.env.DB_TYPE || 'json';
 const API_TYPE = process.env.API_TYPE || 'rest';
 const PORT = process.env.PORT || 3000;
-// const { syncDatabase } = require('./models/index-mysql');
-// const taskRoutes = require('./routes/tasks-rest');
 const { syncDatabase } = require(`./models/index-${DB_TYPE}`);
 const taskRoutes = require(`./routes/tasks-${API_TYPE}`);
 
-
+// Import express and cors
 const express = require('express');
 const cors = require('cors');
 
@@ -19,7 +17,7 @@ app.use(cors());
 // Middleware
 app.use(express.json());
 // Routes
-app.use('/api/tasks', taskRoutes);
+app.use('/api/task', taskRoutes);
 
 // Sync database and start server
 syncDatabase()
@@ -35,7 +33,7 @@ syncDatabase()
   });
 
 
-// 不使用 =>
+// If not using '=>'
 // syncDatabase()
 //   .then(function() {
 //     app.listen(PORT, function() {
@@ -47,7 +45,7 @@ syncDatabase()
 //     process.exit(1);
 //   });
 
-// 也可以这样
+// It can also be done using async/await
 // async function startServer() {
 //   try {
 //     await syncDatabase();

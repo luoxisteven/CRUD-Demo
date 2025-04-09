@@ -57,16 +57,16 @@ const Task = sequelize.define('Task', {
     type: DataTypes.ENUM('To Do', 'In Progress', 'Done'),
     defaultValue: 'To Do'
   },
-  createdAt: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-    allowNull: false
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-    allowNull: false
-  }
+  // createdAt: {
+  //   type: DataTypes.DATE,
+  //   defaultValue: DataTypes.NOW,
+  //   allowNull: false
+  // },
+  // updatedAt: {
+  //   type: DataTypes.DATE,
+  //   defaultValue: DataTypes.NOW,
+  //   allowNull: false
+  // }
 }, {
   timestamps: true // createdAt, updatedAt
 });

@@ -45,15 +45,16 @@ src/
 npm install
 ```
 
-2. Configure the API URL:
-In `src/api/taskApi.ts`, make sure the `API_URL` constant points to your backend API:
-```typescript
-const API_URL = 'http://localhost:3000/api';
-```
+2. Configuration (`src/config.tsx`):
 
-3. Choose your own API type:
-    - By default, we use RestAPI.
-    - If you want to swtich from RestAPI to GraphQL, you need to change the reference `import { taskApi } from '../api/taskRestAPI';` to `import { taskApi } from '../api/taskGraphQL;` in `hooks/useTasks.tsx`
+    1) In `src/api/taskApi.ts`, make sure the `API_URL` constant points to your backend API:
+        ```typescript
+        const API_URL = 'http://localhost:3000/api';
+        ```
+    2) Choose your apitype (either `restapi` or `graphql`)
+        ```typescript
+        apiType: 'restapi', // 'restapi' or 'graphql'
+        ```
 
 ## Initialize the project
 ```bash

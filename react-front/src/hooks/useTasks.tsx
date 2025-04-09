@@ -1,6 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Task, TaskFormData, normalizeTask } from '../types/Task';
-import { taskApi } from '../api/taskGraphQL'; // Adjust the import based on your API file structure
+// import { taskApi } from '../api/taskRestAPI';
+
+import config from '../config';
+import { taskApi as graphqlTaskApi } from '../api/taskGraphQL';
+import { taskApi as restTaskApi } from '../api/taskRestAPI';
+
+// Use the appropriate API based on the config
+const taskApi = config.apiType === 'graphql' ? graphqlTaskApi : restTaskApi;
 
 export const useTasks = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -11,7 +18,7 @@ export const useTasks = () => {
     try {
       const data = await taskApi.getAll();
       // Transform _id to id in each task
-      const normalizedData = data.map(task => normalizeTask(task));
+      const normalizedData = data.map((task: Task) => normalizeTask(task));
       setTasks(normalizedData);
       setError(null);
     } catch (err) {

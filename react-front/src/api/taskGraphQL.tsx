@@ -24,7 +24,7 @@ const convertStatus = {
 export const taskApi = {
   // Get all tasks
   async getAll(): Promise<Task[]> {
-    const response = await axios.post(`${config.apiUrl}/tasks`, {
+    const response = await axios.post(`${config.apiUrl}/task`, {
       query: `
         query GetAllTasks {
           tasks {
@@ -44,7 +44,7 @@ export const taskApi = {
 
   // Get a task by ID
   async getById(id: number): Promise<Task> {
-    const response = await axios.post(`${config.apiUrl}/tasks`, {
+    const response = await axios.post(`${config.apiUrl}/task`, {
       query: `
         query GetTask($id: ID!) {
           task(id: $id) {
@@ -65,7 +65,7 @@ export const taskApi = {
 
   // Create a new task
   async create(task: TaskFormData): Promise<Task> {
-    const response = await axios.post(`${config.apiUrl}/tasks`, {
+    const response = await axios.post(`${config.apiUrl}/task`, {
       query: `
         mutation CreateTask($title: String!, $description: String, $status: TaskStatus) {
           createTask(title: $title, description: $description, status: $status) {
@@ -90,7 +90,7 @@ export const taskApi = {
 
   // Update a task
   async update(id: number, task: Partial<TaskFormData>): Promise<Task> {
-    const response = await axios.post(`${config.apiUrl}/tasks`, {
+    const response = await axios.post(`${config.apiUrl}/task`, {
       query: `
         mutation UpdateTask($id: ID!, $title: String, $description: String, $status: TaskStatus) {
           updateTask(id: $id, title: $title, description: $description, status: $status) {
@@ -116,7 +116,7 @@ export const taskApi = {
 
   // Delete a task
   async delete(id: number): Promise<void> {
-    await axios.post(`${config.apiUrl}/tasks`, {
+    await axios.post(`${config.apiUrl}/task`, {
       query: `
         mutation DeleteTask($id: ID!) {
           deleteTask(id: $id) {
