@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { Task } = require('../models/index');
+
+// Import the Task model based on the DB_TYPE
+require('dotenv').config();
+const DB_TYPE = process.env.DB_TYPE || 'json';
+const { Task } = require(`../models/index-${DB_TYPE}`);
 
 // GET all tasks
 router.get('/', async (req, res) => {

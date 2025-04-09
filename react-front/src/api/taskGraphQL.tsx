@@ -7,7 +7,7 @@ const convertStatus = {
   // Convert UI status string to GraphQL enum value string
   toGraphQL: (status: string | undefined): string | undefined => {
     if (!status) return undefined;
-    
+    // return status;
     switch (status) {
       case 'To Do': return 'TODO';
       case 'In Progress': return 'IN_PROGRESS';

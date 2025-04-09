@@ -1,17 +1,23 @@
+// Configure Backend
+require('dotenv').config();
+const DB_TYPE = process.env.DB_TYPE || 'json';
+const API_TYPE = process.env.API_TYPE || 'rest';
+const PORT = process.env.PORT || 3000;
+// const { syncDatabase } = require('./models/index-mysql');
+// const taskRoutes = require('./routes/tasks-rest');
+const { syncDatabase } = require(`./models/index-${DB_TYPE}`);
+const taskRoutes = require(`./routes/tasks-${API_TYPE}`);
+
+
 const express = require('express');
 const cors = require('cors');
-const { syncDatabase } = require('./models/index');
-const taskRoutes = require('./routes/tasks');
 
+// Create App
 const app = express();
-const PORT = process.env.PORT || 3000;
-
 // CORS Middleware
 app.use(cors());
-
 // Middleware
 app.use(express.json());
-
 // Routes
 app.use('/api/tasks', taskRoutes);
 
@@ -19,7 +25,8 @@ app.use('/api/tasks', taskRoutes);
 syncDatabase()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      console.log(`=========Server running on port ${PORT}=========`);
+      console.log(`=======Server running with ${DB_TYPE} and ${API_TYPE}========`);
     });
   })
   .catch(err => {

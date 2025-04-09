@@ -9,7 +9,11 @@ const {
     GraphQLID,
     GraphQLEnumType
   } = require('graphql');
-  const { Task } = require('../../models/index');
+
+  // Load environment variables and database model
+  require('dotenv').config();
+  const DB_TYPE = process.env.DB_TYPE || 'json';
+  const { Task } = require(`../../models/index-${DB_TYPE}`);
   
   // Define GraphQL types
   const StatusEnum = new GraphQLEnumType({

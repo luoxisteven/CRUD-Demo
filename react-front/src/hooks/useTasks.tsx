@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Task, TaskFormData } from '../types/Task';
-import { taskApi } from '../api/taskRestAPI';
+import { Task, TaskFormData, normalizeTask } from '../types/Task';
+import { taskApi } from '../api/taskGraphQL'; // Adjust the import based on your API file structure
 
 export const useTasks = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -10,7 +10,9 @@ export const useTasks = () => {
   const fetchTasks = useCallback(async () => {
     try {
       const data = await taskApi.getAll();
-      setTasks(data);
+      // Transform _id to id in each task
+      const normalizedData = data.map(task => normalizeTask(task));
+      setTasks(normalizedData);
       setError(null);
     } catch (err) {
       setError('Failed to fetch tasks');
