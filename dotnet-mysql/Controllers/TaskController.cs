@@ -18,7 +18,7 @@ namespace TaskManager.Api.Controllers
 
         // GET: api/Tasks
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Models.Task>>> GetTasks()
+        public async Task<ActionResult<IEnumerable<TaskEntity>>> GetTasks()
         {
             var tasks = await _taskService.GetAllTasksAsync();
             return Ok(tasks);
@@ -26,7 +26,7 @@ namespace TaskManager.Api.Controllers
 
         // GET: api/Tasks/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Models.Task>> GetTask(int id)
+        public async Task<ActionResult<TaskEntity>> GetTask(int id)
         {
             var task = await _taskService.GetTaskByIdAsync(id);
 
@@ -40,7 +40,7 @@ namespace TaskManager.Api.Controllers
 
         // POST: api/Tasks
         [HttpPost]
-        public async Task<ActionResult<Models.Task>> CreateTask(CreateTaskDto taskDto)
+        public async Task<ActionResult<TaskEntity>> CreateTask(CreateTaskDto taskDto)
         {
             if (!ModelState.IsValid)
             {

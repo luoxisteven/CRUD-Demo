@@ -12,19 +12,19 @@ namespace TaskManager.Api.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<Models.Task>> GetAllTasksAsync()
+        public async Task<IEnumerable<TaskEntity>> GetAllTasksAsync()
         {
             return await _context.Tasks.ToListAsync();
         }
 
-        public async Task<Models.Task?> GetTaskByIdAsync(int id)
+        public async Task<TaskEntity?> GetTaskByIdAsync(int id)
         {
             return await _context.Tasks.FindAsync(id);
         }
 
-        public async Task<Models.Task> CreateTaskAsync(CreateTaskDto taskDto)
+        public async Task<TaskEntity> CreateTaskAsync(CreateTaskDto taskDto)
         {
-            var task = new Models.Task
+            var task = new TaskEntity
             {
                 Title = taskDto.Title,
                 Description = taskDto.Description,
@@ -37,7 +37,7 @@ namespace TaskManager.Api.Services
             return task;
         }
 
-        public async Task<Models.Task?> UpdateTaskAsync(int id, UpdateTaskDto taskDto)
+        public async Task<TaskEntity?> UpdateTaskAsync(int id, UpdateTaskDto taskDto)
         {
             var task = await _context.Tasks.FindAsync(id);
 

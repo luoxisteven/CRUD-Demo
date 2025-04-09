@@ -21,6 +21,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 
 - **Frontend**: React with TypeScript
 - **Database**: MySQL, MongoDB, JSON
+- **API**: RestAPI, GraphQL
 
 ## API Endpoints
 
@@ -34,7 +35,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 
 ## Task Model
 
-Each task contains:
+**Each task contains:**
 - Title (string)
 - Description (text)
 - Status (To Do, In Progress, Done)
@@ -42,7 +43,8 @@ Each task contains:
 
 ## Documentation
 
-- [.NET Backend Documentation](dotnet-back/README.md)
+- [.NET Backend and MySQL Documentation](dotnet-mysql/README.md)
+- [.NET Backend and MongoDB Documentation](dotnet-mongodb/README.md)
 - [Node.js Backend Documentation](nodejs-back/README.md)
 - [React Frontend Documentation](react-front/README.md)
 

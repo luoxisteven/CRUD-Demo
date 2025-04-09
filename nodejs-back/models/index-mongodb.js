@@ -24,7 +24,12 @@ const Task = mongoose.model('Task', new mongoose.Schema({
   }
 }, 
 // CreatedAt, UpdatedAt
-// { timestamps: true}
+{ 
+  // // CreatedAt, UpdatedAt
+  // timestamps: true,
+  // This disables the __v field
+  // versionKey: false,
+}
 ));
 
 // Sequelize-compatible API methods

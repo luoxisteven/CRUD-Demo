@@ -1,11 +1,11 @@
 # Task Manager - Node.js
 
-A simple RESTful API for task management built with Node.js, Express.js and Database MySQL, or MongoDB, or JSON.
+A simple RESTful API or GraphQL for task management built with Node.js, Express.js and Database MySQL, or MongoDB, or JSON.
 
 ## Features
 
 - Create, Read, Update, and Delete (CRUD) operations for tasks
-- RESTful API design
+- RESTful API / GraphQL design
 - Automatic database creation and setup
 - Minimal dependencies
 

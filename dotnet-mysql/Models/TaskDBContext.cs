@@ -8,6 +8,6 @@ namespace TaskManager.Api.Models
         {
         }
 
-        public DbSet<Task> Tasks { get; set; } = null!;
+        public DbSet<TaskEntity> Tasks { get; set; } = null!;
     }
 }
