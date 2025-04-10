@@ -27,11 +27,11 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | /api/tasks | Retrieve all tasks |
-| GET | /api/tasks/:id | Retrieve a specific task by ID |
-| POST | /api/tasks | Create a new task |
-| PUT | /api/tasks/:id | Update an existing task |
-| DELETE | /api/tasks/:id | Delete a task |
+| GET | /api/task | Retrieve all tasks |
+| GET | /api/task/:id | Retrieve a specific task by ID |
+| POST | /api/task | Create a new task |
+| PUT | /api/task/:id | Update an existing task |
+| DELETE | /api/task/:id | Delete a task |
 
 ## Task Model
 

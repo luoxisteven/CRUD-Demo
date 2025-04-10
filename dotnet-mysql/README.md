@@ -50,8 +50,8 @@ dotnet add package Pomelo.EntityFrameworkCore.MySql --version 8.0.3
 
 | Method | Endpoint      | Description         |
 |--------|---------------|---------------------|
-| GET    | /api/tasks    | Get all tasks       |
-| GET    | /api/tasks/{id} | Get task by ID      |
-| POST   | /api/tasks    | Create a new task   |
-| PUT    | /api/tasks/{id} | Update an existing task |
-| DELETE | /api/tasks/{id} | Delete a task       |
+| GET    | /api/task      | Get all tasks       |
+| GET    | /api/task/{id} | Get task by ID      |
+| POST   | /api/task      | Create a new task   |
+| PUT    | /api/task/{id} | Update an existing task |
+| DELETE | /api/task/{id} | Delete a task       |

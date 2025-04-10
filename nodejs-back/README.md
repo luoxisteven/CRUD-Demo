@@ -47,11 +47,11 @@ The server will automatically create the database if it doesn't exist and set up
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | /api/tasks | Get all tasks |
-| GET | /api/tasks/:id | Get a specific task by ID |
-| POST | /api/tasks | Create a new task |
-| PUT | /api/tasks/:id | Update an existing task |
-| DELETE | /api/tasks/:id | Delete a task |
+| GET | /api/task     | Get all tasks |
+| GET | /api/task/:id | Get a specific task by ID |
+| POST | /api/task    | Create a new task |
+| PUT | /api/task/:id | Update an existing task |
+| DELETE | /api/task/:id | Delete a task |
 
 ## API Usage Examples
 

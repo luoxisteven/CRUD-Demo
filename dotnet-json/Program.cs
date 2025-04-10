@@ -9,11 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
 // e.g. public class TasksController : Controller
 builder.Services.AddControllers();
 
-// Add MySQL database context
-var connectionString = builder.Configuration.GetConnectionString("MySQLConnection");
-builder.Services.AddDbContext<TaskDBContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
 // Register task service
 // This means that within the same HTTP request, the same TaskService instance will be used.
 builder.Services.AddScoped<TaskService>();
@@ -30,14 +25,6 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
-// Create database if it doesn't exist
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<TaskDBContext>();
-    context.Database.EnsureCreated();
-}
 
 // Redirect Http to https
 // app.UseHttpsRedirection();
