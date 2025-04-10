@@ -25,12 +25,12 @@ SECRET_KEY = 'django-insecure-5^rg2%97&64gvwjiokp&+#n!=uh@&@9y9_r1r61s8yy28t1o-p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = ["*"] #!!!!!!!!!!!!
 
 # Application definition
 
 INSTALLED_APPS = [
+    'task', #!!!!!!!!!!!!
     'corsheaders', #!!IMPORTANT: CORS headers for Django (pip install django-cors-headers)
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True #!!IMPORTANT: CORS headers for Django (pip install django-cors-headers)
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', #!!IMPORTANT: CORS headers for Django (pip install django-cors-headers)
