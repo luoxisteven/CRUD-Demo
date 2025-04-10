@@ -4,7 +4,7 @@ using TaskManager.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container. (A must)
 // e.g. public class TasksController : ControllerBase
 // e.g. public class TasksController : Controller
 builder.Services.AddControllers();
@@ -18,7 +18,7 @@ builder.Services.AddDbContext<TaskDBContext>(options =>
 // This means that within the same HTTP request, the same TaskService instance will be used.
 builder.Services.AddScoped<TaskService>();
 
-// Add CORS support
+// Add CORS support (A must if you use frontend to access the API)
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -39,12 +39,17 @@ using (var scope = app.Services.CreateScope())
     context.Database.EnsureCreated();
 }
 
-// Redirect Http to https
+// Redirect Http to https  (optional)
 app.UseHttpsRedirection();
 
-// Cors
+// These two has been automatically added by WebApplication.CreateBuilder(args)
+// app.UseRouting();
+// app.UseEndpoints();
+
+// Cors (A must if you use frontend to access the API)
 app.UseCors();
 
+// MapControllers (A must)
 app.MapControllers();
 
 app.Run();

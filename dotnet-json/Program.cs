@@ -26,7 +26,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Redirect Http to https
+// Redirect Http to https (optional)
 // app.UseHttpsRedirection();
 
 // Cors
