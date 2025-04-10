@@ -10,18 +10,21 @@ namespace TaskManager.Api.Services
 
         public TaskService(IConfiguration configuration)
         {
-            _filePath = configuration.GetValue<string>("TaskFilePath");
+            _filePath = configuration.GetValue<string>("TaskFilePath") ?? "data/tasks.json";
 
             if (!File.Exists(_filePath))
             {
+                // Ensure _filePath is valid before writing to the file
+                Directory.CreateDirectory(Path.GetDirectoryName(_filePath) ?? string.Empty);
                 File.WriteAllText(_filePath, "[]");
             }
         }
 
+
         public async Task<IEnumerable<TaskEntity>> GetAllTasksAsync()
         {
             var json = await File.ReadAllTextAsync(_filePath);
-            return JsonSerializer.Deserialize<List<TaskEntity>>(json) ?? new List<TaskEntity>();
+            return JsonSerializer.Deserialize<List<TaskEntity>>(json) ?? new List<TaskEntity>(); // Ensure non-null return
         }
 
         public async Task<TaskEntity?> GetTaskByIdAsync(int id)
