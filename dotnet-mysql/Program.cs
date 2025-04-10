@@ -40,7 +40,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Redirect Http to https
-// app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 // Cors
 app.UseCors();

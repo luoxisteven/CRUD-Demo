@@ -125,3 +125,7 @@ button:hover {
   margin-bottom: 15px;
   font-size: 14px;
 }
+
+.toggle-list {
+  margin-bottom: 20px;
+}

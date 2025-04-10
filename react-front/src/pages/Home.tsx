@@ -10,6 +10,8 @@ const Home = () => {
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState<'To Do' | 'In Progress' | 'Done'>('To Do');
 
+  const [openList, setOpenList] = useState(true);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const data = { title, description, status };
@@ -40,6 +42,10 @@ const Home = () => {
     setDescription('');
     setStatus('To Do');
   };
+
+  const toggleList = () => {
+    setOpenList(!openList);
+  }
 
   return (
     <div className="container">
@@ -94,6 +100,10 @@ const Home = () => {
       </div>
 
       {/* Task List */}
+      <button className="toggle-list" onClick={toggleList}>
+        {openList ? 'Hide Task List' : 'Show Task List'}
+      </button>
+      {openList && (
       <div className="card">
         <h2>Task List</h2>
         <table className="task-table">
@@ -120,7 +130,8 @@ const Home = () => {
           </tbody>
         </table>
       </div>
-    </div>
+      )}
+    </div>    
   );
 };
 
