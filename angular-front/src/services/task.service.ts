@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = `${environment.apiUrl}/tasks`;
+  private apiUrl = `${environment.apiUrl}/task`;
   private tasksSubject = new BehaviorSubject<Task[]>([]);
   private errorSubject = new BehaviorSubject<string | null>(null);
 
