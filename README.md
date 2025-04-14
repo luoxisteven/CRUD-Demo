@@ -11,6 +11,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 ## TO DO
 1) Django
 2) GraphQL
+3) Vue.js
 
 ## System Architecture
 
@@ -18,10 +19,17 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
   - .NET Core
   - Node.js/Express
   - Django
-
-- **Frontend**: React with TypeScript
-- **Database**: MySQL, MongoDB, JSON
-- **API**: RestAPI, GraphQL
+- **Frontend Options**: 
+  - React with TypeScript
+  - Angular with TypeScript
+- **Database Options**: 
+  - MySQL
+  - MongoDB
+  - JSON
+  - SQLite
+- **API Options**: 
+  - RestAPI
+  - GraphQL
 
 ## API Endpoints
 
@@ -48,6 +56,8 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
       - [.NET Backend and JSON Documentation](dotnet-json/README.md)
       - [.NET Backend and MySQL Documentation](dotnet-mysql/README.md)
       - [.NET Backend and MongoDB Documentation](dotnet-mongodb/README.md)
+  - Django
+      - [Django Backend](django/README.md)
   - Node.js
       - [Node.js Backend Documentation](nodejs-back/README.md)
 - Frontend

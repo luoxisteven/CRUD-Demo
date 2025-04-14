@@ -13,3 +13,9 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+         # Explicitly set the table name to 'task'. 
+         # If not set, Django will use 'appname_task' as the default table name.
+         # "task_task" in this case
+        db_table = 'tasks'

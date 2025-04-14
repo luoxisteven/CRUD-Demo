@@ -1,16 +1,17 @@
 # Task Manager - Django
-A simple RESTful API for task management built with Django and SQLite.
+A simple RESTful API for task management built with Django.
 
 ## Features
 
 - Create, Read, Update, and Delete (CRUD) operations for tasks
-- SQLite Database Integration
+- SQLite / MySQL / MongoDB Database Integration
 
 ## Prerequisites
 - Python
 - Django
 - django-cors-headers
-
+- MySQL: mysqlclient
+- MongoDB: djongo, pymongo
 
 ## Init
 ```bash
@@ -33,13 +34,30 @@ python manage.py migrate
 pip install django-cors-headers
 # Configure settings.py "INSTALLED_APPS", "MIDDLEWARE", "CORS_ALLOW_ALL_ORIGINS" for CORS
 
+# For MySQL
+# pip install mysqlclient
+
+# For Django: djongo pymongo
+# pip install djongo pymongo
+
 # If you finish coding models.py
 python manage.py makemigrations
 python manage.py migrate
 ```
 
+### Configure (django/django_back/settings.py)
+``` python
+# Configure your database choice here.
+DATABASE_CHOICE = "MySQL" #!!IMPORTANT: Choose your database here. Options: "MySQL", "MongoDB", "SQLite"
+```
+
 ## Run
 ``` bash
+# Init db.sqlite3
+python manage.py makemigrations
+python manage.py migrate
+
+# Run
 python manage.py runserver 3000
 ```
 
