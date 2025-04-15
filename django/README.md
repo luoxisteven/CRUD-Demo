@@ -48,7 +48,8 @@ python manage.py migrate
 ### Configure (django/django_back/settings.py)
 ``` python
 # Configure your database choice here.
-DATABASE_CHOICE = "MySQL" #!!IMPORTANT: Choose your database here. Options: "MySQL", "MongoDB", "SQLite"
+# !!IMPORTANT: Choose your database here. Options: "MySQL", "MongoDB", "SQLite"
+DATABASE_CHOICE = "MySQL" 
 ```
 
 ## Run
