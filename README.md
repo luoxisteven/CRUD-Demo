@@ -11,7 +11,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 ## TO DO
 1) Django
 2) GraphQL
-3) Vue.js
+3) Vue.js 
 
 ## System Architecture
 
