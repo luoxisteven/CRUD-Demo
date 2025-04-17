@@ -15,6 +15,7 @@ export class TaskListComponent {
   tasks$: Observable<Task[]>;
   error$: Observable<string | null>;
   editingTask: Task | null = null;
+  openList: boolean = true; // Toggle state for task list
 
   constructor(private taskService: TaskService) {
     this.tasks$ = this.taskService.tasks$;
@@ -41,5 +42,9 @@ export class TaskListComponent {
 
   deleteTask(id: number): void {
     this.taskService.deleteTask(id).subscribe();
+  }
+
+  toggleList(): void {
+    this.openList = !this.openList;
   }
 }

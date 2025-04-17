@@ -1,5 +1,9 @@
 @use '../../styles/task.module.scss' as *;
 
+* {
+  font-family: sans-serif; /* Set global font to sans-serif */
+}
+
 .card {
   @include card;
 }

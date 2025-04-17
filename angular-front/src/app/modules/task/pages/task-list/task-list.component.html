@@ -1,38 +1,42 @@
 <div class="container">
-    <h1>Task Manager</h1>
-    
-    <div *ngIf="error$ | async as error" class="error-message">
-      {{ error }}
-    </div>
-  
-    <app-task-form
-      [editingTask]="editingTask"
-      (submitTask)="onTaskSubmit($event)"
-      (cancelEdit)="cancelEdit()"
-    ></app-task-form>
-  
-    <div class="card">
-      <h2>Task List</h2>
-      <table class="task-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let task of tasks$ | async" class="task-row">
-            <td>{{ task.title }}</td>
-            <td>{{ task.description }}</td>
-            <td>{{ task.status }}</td>
-            <td>
-              <button (click)="startEdit(task)">Edit</button>
-              <button (click)="deleteTask(task.id!)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <h1>Task Manager</h1>
+
+  <div *ngIf="error$ | async as error" class="error-message">
+    {{ error }}
   </div>
+
+  <app-task-form
+    [editingTask]="editingTask"
+    (submitTask)="onTaskSubmit($event)"
+    (cancelEdit)="cancelEdit()"
+  ></app-task-form>
+
+  <button class="toggle-list" (click)="toggleList()">
+    {{ openList ? 'Hide Task List' : 'Show Task List' }}
+  </button>
+
+  <div class="card" *ngIf="openList">
+    <h2>Task List</h2>
+    <table class="task-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks$ | async" class="task-row">
+          <td>{{ task.title }}</td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.status }}</td>
+          <td>
+            <button (click)="startEdit(task)">Edit</button>
+            <button (click)="deleteTask(task.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
