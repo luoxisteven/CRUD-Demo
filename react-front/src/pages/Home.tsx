@@ -93,7 +93,7 @@ const Home = () => {
               </button>
             )}
             <button type="submit">
-              {editingId ? 'Update' : 'Add'}
+              {editingId ? 'Update' : 'Create'}
             </button>
           </div>
         </form>

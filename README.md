@@ -51,17 +51,19 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 
 - Backend
   - Dotnet
-      - [.NET Backend and In-Memory DB Documentation](dotnet-memory/README.md)
+      - [.NET Backend and In-Memory DB Documentation](dotnet-inmemorydb/README.md)
       - [.NET Backend and JSON Documentation](dotnet-json/README.md)
       - [.NET Backend and MySQL Documentation](dotnet-mysql/README.md)
       - [.NET Backend and MongoDB Documentation](dotnet-mongodb/README.md)
   - Django
-      - [Django Backend](django/README.md)
+      - [Django Backend Basic](django-basic/README.md)
+      - [Django Backend with Rest Framework Package](django-restframework/README.md)
   - Node.js
       - [Node.js Backend Documentation](nodejs-back/README.md)
 - Frontend
   - React
     - [React Frontend Documentation](react-front/README.md)
+  - Angular
 
 ## Purpose
 
