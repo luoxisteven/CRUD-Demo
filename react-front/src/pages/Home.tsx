@@ -3,7 +3,7 @@ import { useTasks } from '../hooks/useTasks';
 import { Task, TaskStatus } from '../types/Task';
 
 const Home = () => {
-  const { tasks, error, createTask, updateTask, deleteTask } = useTasks();
+  const { tasks, error, fetchTasks, createTask, updateTask, deleteTask } = useTasks();
   const [editingId, setEditingId] = useState<number | null>(null);
   // For Create and Updating task
   const [title, setTitle] = useState('');
@@ -102,6 +102,10 @@ const Home = () => {
       {/* Task List */}
       <button className="toggle-list" onClick={toggleList}>
         {openList ? 'Hide Task List' : 'Show Task List'}
+      </button>
+
+      <button className="toggle-list" onClick={fetchTasks}>
+        Refresh
       </button>
       {openList && (
       <div className="card">
