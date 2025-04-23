@@ -9,9 +9,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 ![image](img/website.jpg)
 
 ## TO DO
-1) Django
-2) GraphQL
-3) Vue.js 
+1) Vue.js 
 
 ## System Architecture
 

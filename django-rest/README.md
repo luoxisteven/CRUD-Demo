@@ -10,7 +10,7 @@ A simple RESTful API for task management built with Django.
 - Python
 - Django
 - django-cors-headers
-- 
+- Rest Framework
 - MySQL: mysqlclient
 - MongoDB: djongo, pymongo
 
