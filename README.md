@@ -6,7 +6,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 - @Email: steven@xiluo.net
 
 ## Website Layout
-![image](img/website.jpg)
+![image](artifacts/website.jpg)
 
 ## TO DO
 1) Vue.js 
@@ -21,13 +21,19 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
   - React with TypeScript
   - Angular with TypeScript
 - **Database Options**: 
-  - MySQL
+  - MySQL 
   - MongoDB
-  - JSON
-  - SQLite
+    - Django Limited
+  - JSON 
+    - Node.js and .NET only
+  - SQLite 
+    - Django Only
+  - In-Memory Database 
+    - .NET Only
+
 - **API Options**: 
   - RestAPI
-  - GraphQL
+  - GraphQL (Node.js Only)
 
 ## API Endpoints
 
