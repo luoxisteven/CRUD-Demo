@@ -69,9 +69,9 @@ npm install
 npm install axios
 ```
 
-## Install essential dependencies
+## Install router dependencies (optional for router)
 ```bash
-npm install axios react-router-dom @types/react-router-dom
+npm install react-router-dom @types/react-router-dom
 ```
 
 
