@@ -9,15 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // e.g. public class TasksController : Controller
 builder.Services.AddControllers();
 
-// Add MySQL database context
-var connectionString = builder.Configuration.GetConnectionString("MySQLConnection");
-builder.Services.AddDbContext<TaskDBContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
 // Add In-memory database context
-// dotnet add package Microsoft.EntityFrameworkCore.InMemory
-// builder.Services.AddDbContext<TaskDBContext>(options =>
-//     options.UseInMemoryDatabase("TaskDB"));
+builder.Services.AddDbContext<TaskDBContext>(options =>
+    options.UseInMemoryDatabase("TaskDB"));
 
 // Register task service
 // This means that within the same HTTP request, the same TaskService instance will be used.
@@ -44,7 +38,7 @@ using (var scope = app.Services.CreateScope())
     context.Database.EnsureCreated();
 }
 
-// Redirect Http to https  (optional)
+// Redirect Http to https (optional)
 app.UseHttpsRedirection();
 
 // These two has been automatically added by WebApplication.CreateBuilder(args)

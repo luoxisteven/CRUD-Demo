@@ -1,17 +1,16 @@
 # Task Manager - .Net
-A simple RESTful API for task management built with .NET 8 and MySQL.
+A simple RESTful API for task management built with .NET 8 and In-Memory Database.
 
 ## Features
 
 - Create, Read, Update, and Delete (CRUD) operations for tasks
-- MySQL database integration with Entity Framework Core
+- In-Memory database integration with Entity Framework Core
 - Clean architecture with separate Models, Controllers, and Services
 - Automatic database creation
 
 ## Prerequisites
 
 - .NET 8 SDK
-- MySQL Server
 
 ## Project Structure
 
@@ -20,30 +19,22 @@ A simple RESTful API for task management built with .NET 8 and MySQL.
 - **Services/** - Business logic and data access
 
 ## Getting Started
-
-1. Configure the database connection in `appsettings.json`
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "server=localhost;user=root;password=password;database=task_manager"
-  }
-}
-```
-
-2. Run the appliction:
 ```bash
 dotnet run
 ```
+
 ## Init
 ``` bash
 # dotnet webapi
-cd dotnet-mysql
+cd dotnet-back
 dotnet new webapi
 
 # add packages
-dotnet add package Microsoft.EntityFrameworkCore --version 8.0.13
-dotnet add package Microsoft.EntityFrameworkCore.Relational --version 8.0.13
-dotnet add package Pomelo.EntityFrameworkCore.MySql --version 8.0.3
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Relational
+
+# add package for InMemoryDatabase
+dotnet add package Microsoft.EntityFrameworkCore.InMemory
 ```
 
 ## API Endpoints

@@ -34,7 +34,7 @@ dotnet run
 ## Init
 ``` bash
 # dotnet webapi
-cd dotnet-back
+cd dotnet-json
 dotnet new webapi
 
 # add packages
