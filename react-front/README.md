@@ -8,7 +8,7 @@ A simple, minimalistic React TypeScript frontend application for managing tasks.
 ## Features
 
 - View all tasks in a clean tabular layout
-- Create new tasks with title, description, and status
+- Add new tasks with title, description, and status
 - Edit existing tasks
 - Delete tasks
 - Simple and intuitive user interface
@@ -64,13 +64,11 @@ nvm install --lts
 npm create vite@latest ts-front -- --template react-ts
 cd ts-front
 npm install
-
-# From Beginning
-npm install axios
 ```
 
 ## Install router dependencies (optional for router)
 ```bash
+npm install axios
 npm install react-router-dom @types/react-router-dom
 ```
 
