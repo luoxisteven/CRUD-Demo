@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Task 1",
+    "description": "Save the world",
+    "status": "To Do"
+  },
+  {
+    "id": 2,
+    "title": "Task 2",
+    "description": "Get a job",
+    "status": "Done"
+  },
+  {
+    "id": 3,
+    "title": "Mission 1",
+    "description": "Get better job",
+    "status": "In Progress"
+  },
+  {
+    "id": 4,
+    "title": "Mission 2",
+    "description": "JSON Database",
+    "status": "To Do"
+  }
+]
