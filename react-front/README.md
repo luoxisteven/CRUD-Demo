@@ -1,6 +1,6 @@
 # Tasks React Frontend
 
-A simple, minimalistic React TypeScript frontend application for managing tasks. This frontend connects to a Node.js backend switching between RestAPI and GraphQL to perform CRUD operations on tasks.
+A simple, minimalistic React TypeScript frontend application for managing tasks. This frontend connects to any backend switching between RestAPI and GraphQL to perform CRUD operations on tasks.
 
 ## Layout
 ![image](../img/website.jpg)

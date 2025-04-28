@@ -1,66 +1,42 @@
-# AngularFront
+# Tasks Angular Frontend
+A simple, minimalistic Angular TypeScript frontend application for managing tasks. This frontend connects to any backend switching between RestAPI and GraphQL to perform CRUD operations on tasks.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+## Features
 
-## Development server
+- View all tasks in a clean tabular layout
+- Add new tasks with title, description, and status
+- Edit existing tasks
+- Delete tasks
+- Simple and intuitive user interface
+- Minimal dependencies
 
-To start a local development server, run:
-
+## Create
 ```bash
-ng serve
+# Install and verify
+npm install -g @angular/cli
+ng version
+
+# Create a new Angular project
+ng new angular-front
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+## Run
 ```bash
-ng generate component component-name
+ng serve 
+# or
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+## Add Components / Services
 ```bash
-ng generate --help
+# Add Components
+ng generate component components/task-list
+
+# Add Services
+ng generate service services/task
 ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
+## Building for Production
+``` bash
+ng build --prod
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-
-## Generate route
-# src/app/modules/task
-ng generate module modules/task --routing
-ng generate component modules/task/pages/task-list
-ng generate component modules/task/components/task-form
