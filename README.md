@@ -70,6 +70,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
   - React
     - [React Frontend Documentation](react-front/README.md)
   - Angular
+    - [Angular Frontend Documentation](angular-front/README.md)
 
 ## Purpose
 

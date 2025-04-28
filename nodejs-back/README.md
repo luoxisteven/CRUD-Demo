@@ -28,6 +28,9 @@ Each task includes:
 1. Install dependencies:
 ``` bash
 npm install
+
+# If without package.json
+npm install dotenv express cors
 ```
 
 2. Configure the database:
