@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { TaskData } from '../types/type';
+import { TaskData, TaskWithMethods } from '../types/type';
 
 // Data file path
 const dataPath: string = path.join(__dirname, '../data/tasks.json');
@@ -27,20 +27,20 @@ async function writeTasks(tasks: TaskData[]): Promise<void> {
 // Task model
 const Task = {
   // Find all tasks
-  findAll: async (): Promise<TaskData[]> => {
+  findAll: async (): Promise<TaskWithMethods[]> => {
     const tasks = await readTasks();
     return tasks.map(task => Task.attachMethods(task));
   },
 
   // Find task by ID
-  findByPk: async (id: number): Promise<TaskData | null> => {
+  findByPk: async (id: number): Promise<TaskWithMethods | null> => {
     const tasks = await readTasks();
     const task = tasks.find(task => task.id === id);
     return task ? Task.attachMethods(task) : null;
   },
 
   // Create new task
-  create: async (taskData: Omit<TaskData, 'id'>): Promise<TaskData> => {
+  create: async (taskData: Omit<TaskData, 'id'>): Promise<TaskWithMethods> => {
     const tasks = await readTasks();
     const newId = tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 1;
 
@@ -57,14 +57,11 @@ const Task = {
   },
 
   // Attach methods to task object
-  attachMethods: (taskData: TaskData): TaskData & {
-    update: (updateData: Partial<TaskData>) => Promise<TaskData>;
-    destroy: () => Promise<boolean>;
-  } => {
+  attachMethods: (taskData: TaskData): TaskWithMethods => {
     return {
       ...taskData,
       // Update task
-      update: async (updateData: Partial<TaskData>): Promise<TaskData> => {
+      update: async (updateData: Partial<TaskData>): Promise<TaskWithMethods> => {
         const tasks = await readTasks();
         const index = tasks.findIndex(t => t.id === taskData.id);
 
