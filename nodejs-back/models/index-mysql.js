@@ -68,7 +68,8 @@ const Task = sequelize.define('Task', {
   //   allowNull: false
   // }
 }, {
-  timestamps: true // createdAt, updatedAt
+  // timestamps: true // createdAt, updatedAt
+  timestamps: false // createdAt, updatedAt
 });
 
 // Sync database

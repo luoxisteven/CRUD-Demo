@@ -34,9 +34,11 @@ A simple RESTful API for task management built with .NET 8 and MySQL.
 ```bash
 dotnet run
 ```
+
 ## Init
 ``` bash
 # dotnet webapi
+mkdir dotnet-back
 cd dotnet-mysql
 dotnet new webapi
 
@@ -44,6 +46,12 @@ dotnet new webapi
 dotnet add package Microsoft.EntityFrameworkCore --version 8.0.13
 dotnet add package Microsoft.EntityFrameworkCore.Relational --version 8.0.13
 dotnet add package Pomelo.EntityFrameworkCore.MySql --version 8.0.3
+```
+
+## Notice
+``` bash
+# Remember to modify your port in `Properties/launchSettings.json`
+ "applicationUrl": "http://localhost:3000",
 ```
 
 ## API Endpoints

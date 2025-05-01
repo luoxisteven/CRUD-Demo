@@ -19,6 +19,8 @@ export const useTasks = () => {
       const data = await taskApi.getAll();
       // Transform _id to id in each task
       const normalizedData = data.map((task: Task) => normalizeTask(task));
+      // If you don't use MongoDB, you can skip the normalization step
+      // setTasks(data);``
       setTasks(normalizedData);
       setError(null);
     } catch (err) {

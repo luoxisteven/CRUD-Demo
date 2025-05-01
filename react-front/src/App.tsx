@@ -6,10 +6,10 @@ function App() {
   return (
     <div className="app">
       {/* Without Route */}
-      {/* <Home /> */}
+      <Home />
 
       {/* With Route */}
-      <AppRoute />
+      {/* <AppRoute /> */}
     </div>
   );
 }

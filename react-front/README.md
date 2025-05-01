@@ -3,7 +3,7 @@
 A simple, minimalistic React TypeScript frontend application for managing tasks. This frontend connects to any backend switching between RestAPI and GraphQL to perform CRUD operations on tasks.
 
 ## Layout
-![image](../img/website.jpg)
+![image](../artifacts/website.jpg)
 
 ## Features
 
@@ -31,11 +31,13 @@ src/
 ├── hooks/
 │   └── useTasks.ts        # Custom hook for task state management
 ├── pages/
-│   └── Home.tsx           # Main page component
+│   ├── Home.tsx           # Main page component
+│   └── About.tsx          # About page component
 ├── types/
 │   └── Task.ts            # TypeScript type definitions
 ├── App.css                # Global styles
 ├── App.tsx                # Root component
+├─ config.tsx              # Configuration
 └── main.tsx               # Application entry point
 ```
 

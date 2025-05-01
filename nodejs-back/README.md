@@ -23,6 +23,19 @@ Each task includes:
 - or MongoDB
 - or JSON
 
+## Init
+``` bash
+# This is important for `npm start`
+npm init -y
+
+# Make sure you have 
+"scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+# in your package.json
+```
+
 ## Installation
 
 1. Install dependencies:
@@ -30,7 +43,7 @@ Each task includes:
 npm install
 
 # If without package.json
-npm install dotenv express cors
+npm install cors dotenv express express-graphql mongoose mysql2 sequelize
 ```
 
 2. Configure the database:
@@ -114,7 +127,7 @@ GET /api/tasks
 ```
 
 ## Project Structure
-```
+``` bash
 task-manager-api/
 ├── app.js              # Main application entry point
 ├── config/
@@ -123,6 +136,7 @@ task-manager-api/
 │   └── index.js        # Database models and connection
 ├── routes/
 │   └── tasks.js        # API routes for tasks
+├── .env                # Project enviornment
 ├── package.json        # Project dependencies
 └── README.md           # Project documentation
 ```

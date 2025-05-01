@@ -34,12 +34,19 @@ dotnet run
 ## Init
 ``` bash
 # dotnet webapi
+mkdir dotnet-back
 cd dotnet-json
 dotnet new webapi
 
 # add packages
 dotnet add package Microsoft.EntityFrameworkCore --version 8.0.13
 dotnet add package Microsoft.EntityFrameworkCore.Relational --version 8.0.13
+```
+
+## Notice
+``` bash
+# Remember to modify your port in `Properties/launchSettings.json`
+ "applicationUrl": "http://localhost:3000",
 ```
 
 ## API Endpoints

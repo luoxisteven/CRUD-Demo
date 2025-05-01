@@ -30,9 +30,11 @@ builder.Services.AddSingleton<IMongoClient>(new MongoClient("mongodb://localhost
 ```bash
 dotnet run
 ```
+
 ## Init
 ``` bash
 # dotnet webapi
+mkdir dotnet-back
 cd dotnet-mongodb
 dotnet new webapi
 
@@ -42,6 +44,12 @@ dotnet add package Microsoft.EntityFrameworkCore.Relational --version 8.0.13
 
 # add MongoDB Driver
 dotnet add package MongoDB.Driver
+```
+
+## Notice
+``` bash
+# Remember to modify your port in `Properties/launchSettings.json`
+ "applicationUrl": "http://localhost:3000",
 ```
 
 ## API Endpoints

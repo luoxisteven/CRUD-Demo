@@ -26,6 +26,7 @@ dotnet run
 ## Init
 ``` bash
 # dotnet webapi
+mkdir dotnet-back
 cd dotnet-back
 dotnet new webapi
 
@@ -35,6 +36,12 @@ dotnet add package Microsoft.EntityFrameworkCore.Relational
 
 # add package for InMemoryDatabase
 dotnet add package Microsoft.EntityFrameworkCore.InMemory
+```
+
+## Notice
+``` bash
+# Remember to modify your port in `Properties/launchSettings.json`
+ "applicationUrl": "http://localhost:3000",
 ```
 
 ## API Endpoints

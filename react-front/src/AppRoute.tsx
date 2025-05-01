@@ -7,7 +7,6 @@ function AppRoute() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* Example */}
         <Route path="/about" element={<About />} /> 
       </Routes>
     </Router>
