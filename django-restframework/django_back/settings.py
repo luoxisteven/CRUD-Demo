@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'django_back.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-DATABASE_CHOICE = "SQLite" #!!IMPORTANT: Choose your database here. Options: "MySQL", "MongoDB", "SQLite"
+DATABASE_CHOICE = "MongoDB" #!!IMPORTANT: Choose your database here. Options: "MySQL", "MongoDB", "SQLite"
 
 if (DATABASE_CHOICE == "MySQL"):
     DATABASES = {

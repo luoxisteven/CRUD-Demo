@@ -6,8 +6,12 @@ class Task(models.Model):
     description = models.TextField()
     status = models.CharField(
         max_length=20, 
-        choices=[('to_do', 'To Do'), ('in_progress', 'In Progress'), ('done', 'Done')],
-        default='to_do'
+        choices=[
+            ('To Do', 'To Do'),
+            ('In Progress', 'In Progress'),
+            ('Done', 'Done')
+        ],
+        default='To Do'
     )
 
     def __str__(self):
