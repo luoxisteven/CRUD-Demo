@@ -80,6 +80,7 @@ namespace TaskManager.Api.Services
 
             _context.Tasks.Remove(task);
             await _context.SaveChangesAsync();
+            
             return true;
         }
     }
