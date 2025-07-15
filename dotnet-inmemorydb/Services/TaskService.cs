@@ -78,9 +78,10 @@ namespace TaskManager.Api.Services
                 return false;
             }
 
+
             _context.Tasks.Remove(task);
             await _context.SaveChangesAsync();
-            
+
             return true;
         }
     }
