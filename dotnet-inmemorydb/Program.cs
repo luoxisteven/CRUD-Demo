@@ -39,7 +39,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Redirect Http to https (optional)
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 // These two has been automatically added by WebApplication.CreateBuilder(args)
 // app.UseRouting();
