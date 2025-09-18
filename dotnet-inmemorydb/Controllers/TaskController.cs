@@ -5,7 +5,7 @@ using TaskManager.Api.Services;
 namespace TaskManager.Api.Controllers
 {
     // will be 'api/Tasks': because the class name TasksController
-    [Route("api/[controller]")]
+    [Route("api/task")]
     [ApiController]
     public class TaskController : ControllerBase
     {
