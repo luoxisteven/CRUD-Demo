@@ -1,6 +1,6 @@
 import Home from './pages/Home';
 import './App.css';
-import AppRoute from './AppRoute';
+// import AppRoute from './AppRoute';
 
 function App() {
   return (
