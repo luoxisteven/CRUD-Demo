@@ -97,6 +97,11 @@ docker build -t luoxisteven/dotnet-inmemorydb:latest .
 # Push Images
 docker push <Your Username>/dotnet-inmemorydb:v1
 docker push luoxisteven/dotnet-inmemorydb:latest
+
+# Push Image to the Lightsail container service
+aws lightsail push-container-image --region <Region> --service-name <ContainerServiceName> --label <ContainerImageLabel> --image <LocalContainerImageName>:<ImageTag>
+
+aws lightsail push-container-image --region ap-southeast-2 --service-name testing --label dotnet-inmemorydb --image luoxisteven/dotnet-inmemorydb:latest
 ```
 
 ## Setting up Custom Domain for Container:
