@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  dotnet-inmemorydb:
+    build:
+      context: ./dotnet-inmemorydb
+      dockerfile: Dockerfile
+    image: dotnet-inmemorydb:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:3000
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+

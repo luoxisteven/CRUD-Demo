@@ -75,3 +75,16 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 ## Purpose
 
 This project demonstrates how the same functionality can be implemented across different backend frameworks while maintaining identical API interfaces and frontend interactions. It serves as a practical comparison of implementation patterns across technologies.
+
+## About Docker
+``` bash
+# Create container for all services
+docker compose up --build
+
+# Create container for signle service
+cd .\dotnet-inmemorydb\
+# Create Image
+docker build -t dotnet-inmemorydb:latest .
+# Run the Container
+docker run -d --name dotnet-inmemorydb -p 3000:3000 -e ASPNETCORE_ENVIRONMENT=Production dotnet-inmemorydb:latest
+```
