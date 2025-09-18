@@ -98,3 +98,8 @@ docker build -t luoxisteven/dotnet-inmemorydb:latest .
 docker push <Your Username>/dotnet-inmemorydb:v1
 docker push luoxisteven/dotnet-inmemorydb:latest
 ```
+
+## Setting up Custom Domain for Container:
+1) Create a SSL/TLS Certificate
+2) Setting up a CNAME record for the SSL/TLS Certificate
+3) Setting up another CNAME record for your domain and the default domain
