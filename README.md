@@ -94,9 +94,14 @@ docker login
 # Build Image
 docker build -t <Your Username>/dotnet-inmemorydb:v1 -t <Your Username>/dotnet-inmemorydb:latest .\
 docker build -t luoxisteven/dotnet-inmemorydb:latest .
+
 # Push Images
 docker push <Your Username>/dotnet-inmemorydb:v1
 docker push luoxisteven/dotnet-inmemorydb:latest
+
+
+docker build -t luoxisteven/dotnet-mongodb:v2 .
+docker push luoxisteven/dotnet-mongodb:v2
 
 # Push Image to the Lightsail container service
 aws lightsail push-container-image --region <Region> --service-name <ContainerServiceName> --label <ContainerImageLabel> --image <LocalContainerImageName>:<ImageTag>
