@@ -8,9 +8,22 @@ services:
     image: dotnet-inmemorydb:latest
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://0.0.0.0:3000
+      - ASPNETCORE_URLS=http://0.0.0.0:8888
     ports:
-      - "3000:3000"
+      - "8888:8888"
     restart: unless-stopped
+
+  react-task:
+    image: node:20-alpine
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./react-task:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    command: sh -c "npm ci && npm run dev -- --host 0.0.0.0 --port 5173"
 
 
