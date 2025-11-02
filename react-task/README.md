@@ -1,0 +1,93 @@
+# Tasks React Frontend
+
+A simple, minimalistic React TypeScript frontend application for managing tasks. This frontend connects to any backend switching between RestAPI and GraphQL to perform CRUD operations on tasks.
+
+## Layout
+![image](../artifacts/website.jpg)
+
+## Features
+
+- View all tasks in a clean tabular layout
+- Add new tasks with title, description, and status
+- Edit existing tasks
+- Delete tasks
+- Simple and intuitive user interface
+- Minimal dependencies
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- Vite (for fast development and building)
+- CSS (plain, no frameworks)
+- RestAPI / GraphQL
+
+## Project Structure
+
+``` bash
+src/
+├── api/
+│   └── taskApi.ts         # API client for backend communication
+├── hooks/
+│   └── useTasks.ts        # Custom hook for task state management
+├── pages/
+│   ├── Home.tsx           # Main page component
+│   └── About.tsx          # About page component
+├── types/
+│   └── Task.ts            # TypeScript type definitions
+├── App.css                # Global styles
+├── App.tsx                # Root component
+├─ config.tsx              # Configuration
+└── main.tsx               # Application entry point
+```
+
+## Setup and Installation
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Configuration (`src/config.tsx`):
+
+    1) Base URL fallback. Set primary and secondary API URLs. The app will try the first and automatically fall back to the next if the request fails:
+        ```typescript
+        // src/config.tsx
+        const config = {
+          apiUrls: import.meta.env.PROD
+            ? ['https://crudapi.xiluo.net/api', 'https://api.xiluo.net/api']
+            : ['http://localhost:8888/api', 'https://crudapi.xiluo.net/api'],
+          apiType: 'restapi',
+        };
+        export default config;
+        ```
+    2) Choose your apitype (either `restapi` or `graphql`)
+        ```typescript
+        apiType: 'restapi', // 'restapi' or 'graphql'
+        ```
+
+## Initialize the project
+```bash
+# Upgrade your node
+nvm install --lts
+
+npm create vite@latest ts-front -- --template react-ts
+cd ts-front
+npm install
+```
+
+## Install router dependencies (optional for router)
+```bash
+npm install axios
+npm install react-router-dom @types/react-router-dom
+```
+
+
+## Building for Production
+```bash
+npm run build
+```
+
+## Run
+```bash
+npm run dev
+```
