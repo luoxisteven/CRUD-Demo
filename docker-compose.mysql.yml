@@ -19,7 +19,7 @@ services:
     working_dir: /app
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://0.0.0.0:3000
+      - ASPNETCORE_URLS=http://0.0.0.0:8888
       - ConnectionStrings__MySQLConnection=server=mysql;user=root;password=abc123;database=task_manager
     volumes:
       - ./dotnet-mysql:/app
@@ -28,7 +28,7 @@ services:
         condition: service_healthy
     ports:
       - "8888:8888"
-    command: sh -c "dotnet restore && dotnet run --no-launch-profile --urls http://0.0.0.0:3000"
+    command: sh -c "dotnet restore && dotnet run --no-launch-profile --urls http://0.0.0.0:8888"
     restart: unless-stopped
 
 volumes:

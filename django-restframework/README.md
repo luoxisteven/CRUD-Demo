@@ -64,7 +64,7 @@ python manage.py makemigrations
 python manage.py migrate
 
 # Run
-python manage.py runserver 3000
+python manage.py runserver 8888
 ```
 
 ## API Endpoints

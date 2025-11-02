@@ -9,7 +9,7 @@ dotenv.config();
 // Environment variables with defaults
 const DB_TYPE: string = process.env.DB_TYPE || 'json';
 const API_TYPE: string = process.env.API_TYPE || 'rest';
-const PORT: number = parseInt(process.env.PORT || '3000', 10);
+const PORT: number = parseInt(process.env.PORT || '8888', 10);
 
 // Dynamically import database sync and routes
 const { syncDatabase } = require(`./models/index-${DB_TYPE}`);

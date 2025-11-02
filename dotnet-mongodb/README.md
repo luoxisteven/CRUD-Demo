@@ -49,7 +49,7 @@ dotnet add package MongoDB.Driver
 ## Notice
 ``` bash
 # Remember to modify your port in `Properties/launchSettings.json`
- "applicationUrl": "http://localhost:3000",
+ "applicationUrl": "http://localhost:8888",
 ```
 
 ## API Endpoints

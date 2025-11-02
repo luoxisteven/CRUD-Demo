@@ -51,7 +51,7 @@ npm install
 
     1) In `src/api/taskApi.ts`, make sure the `API_URL` constant points to your backend API:
         ```typescript
-        const API_URL = 'http://localhost:3000/api';
+        const API_URL = 'http://localhost:8888/api';
         ```
     2) Choose your apitype (either `restapi` or `graphql`)
         ```typescript

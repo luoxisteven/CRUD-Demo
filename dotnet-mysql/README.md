@@ -51,7 +51,7 @@ dotnet add package Pomelo.EntityFrameworkCore.MySql --version 8.0.3
 ## Notice
 ``` bash
 # Remember to modify your port in `Properties/launchSettings.json`
- "applicationUrl": "http://localhost:3000",
+ "applicationUrl": "http://localhost:8888",
 ```
 
 ## API Endpoints

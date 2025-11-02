@@ -46,7 +46,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Relational --version 8.0.13
 ## Notice
 ``` bash
 # Remember to modify your port in `Properties/launchSettings.json`
- "applicationUrl": "http://localhost:3000",
+ "applicationUrl": "http://localhost:8888",
 ```
 
 ## API Endpoints

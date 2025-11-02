@@ -1,4 +1,4 @@
-@dotnet_back_HostAddress = http://localhost:3000
+@dotnet_back_HostAddress = http://localhost:8888
 
 GET {{dotnet_back_HostAddress}}/weatherforecast/
 Accept: application/json

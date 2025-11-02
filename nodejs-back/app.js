@@ -2,7 +2,7 @@
 require('dotenv').config();
 const DB_TYPE = process.env.DB_TYPE || 'json';
 const API_TYPE = process.env.API_TYPE || 'rest';
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8888;
 const { syncDatabase } = require(`./models/index-${DB_TYPE}`);
 const taskRoutes = require(`./routes/tasks-${API_TYPE}`);
 

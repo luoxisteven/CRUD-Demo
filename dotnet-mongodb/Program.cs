@@ -8,9 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Get the database type from configuration
-// AddSingleton: Creates a single instance of the service for the entire application lifetime
-builder.Services.AddSingleton<IMongoClient>(new MongoClient("mongodb://localhost:27017"));
+// Configure Mongo connection (prefer env var, then config, else service name in Docker)
+var mongoConnectionString = Environment.GetEnvironmentVariable("MONGO_URL")
+    ?? builder.Configuration["MONGO_URL"]
+    ?? "mongodb://mongodb:27017";
+builder.Services.AddSingleton<IMongoClient>(_ => new MongoClient(mongoConnectionString));
 // AddScoped: Creates a new instance of the service for each HTTP request
 builder.Services.AddScoped<TaskService>();
 

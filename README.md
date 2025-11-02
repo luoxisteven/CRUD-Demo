@@ -90,7 +90,7 @@ cd .\dotnet-inmemorydb\
 # Create Image
 docker build -t dotnet-inmemorydb:latest .
 # Run the Container
-docker run -d --name dotnet-inmemorydb -p 3000:3000 -e ASPNETCORE_ENVIRONMENT=Production dotnet-inmemorydb:latest
+docker run -d --name dotnet-inmemorydb -p 8888:8888 -e ASPNETCORE_ENVIRONMENT=Production dotnet-inmemorydb:latest
 
 # Push the image into Docker Hub
 # Login
