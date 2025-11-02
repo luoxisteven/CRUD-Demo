@@ -81,6 +81,10 @@ This project demonstrates how the same functionality can be implemented across d
 # Create container for all services
 docker compose up --build
 
+docker compose -f docker-compose.yml up --build
+docker compose -f docker-compose.mongodb.yml up --build
+docker compose -f docker-compose.mysql.yml up --build
+
 # Create container for signle service
 cd .\dotnet-inmemorydb\
 # Create Image
