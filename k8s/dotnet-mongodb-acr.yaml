@@ -77,7 +77,7 @@ spec:
         app: dotnet-mongodb
     spec:
       imagePullSecrets:
-        - name: itmacr
+        - name: acr-secret
       containers:
         - name: dotnet-mongodb
           image: itmacr.azurecr.io/dotnet-mongodb:latest

@@ -17,7 +17,7 @@ spec:
   - hosts:
     - crudapi.itm.dev
     - crud.itm.dev
-    secretName: itm-tls
+    secretName: tls-secret
   rules:
   - host: crudapi.itm.dev
     http:
