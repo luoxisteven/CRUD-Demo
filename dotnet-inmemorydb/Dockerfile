@@ -1,5 +1,5 @@
 # Build stage
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM --platform=linux/amd64 mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # copy csproj and restore as distinct layers
@@ -13,7 +13,7 @@ COPY . .
 RUN dotnet publish "dotnet-back.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM --platform=linux/amd64 mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 
 # Expose the port configured in launchSettings (http 8888)
