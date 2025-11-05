@@ -150,6 +150,11 @@ aws lightsail push-container-image --region <Region> --service-name <ContainerSe
 aws lightsail push-container-image --region ap-southeast-2 --service-name testing --label dotnet-inmemorydb --image luoxisteven/dotnet-inmemorydb:latest
 ```
 
+## Setting up Custom Domain for Container (Try Amazon API Gateway and SSL):
+1) Create a SSL/TLS Certificate
+2) Setting up a CNAME record for the SSL/TLS Certificate
+3) Setting up another CNAME record for your domain and the default domain
+
 ## Push image to Azure Container Registry (ACR)
 ``` bash
 # Beware of the node architect whether it is ARM64 or x86
@@ -185,8 +190,3 @@ kubectl apply -f k8s/dotnet-mongodb.yaml -n testing
 # Delete yaml file from namespace
 kubectl -n testing delete -f k8s/dotnet-mongodb.yaml
 ```
-
-## Setting up Custom Domain for Container:
-1) Create a SSL/TLS Certificate
-2) Setting up a CNAME record for the SSL/TLS Certificate
-3) Setting up another CNAME record for your domain and the default domain
