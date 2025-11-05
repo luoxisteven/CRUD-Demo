@@ -117,17 +117,7 @@ aws lightsail push-container-image --region <Region> --service-name <ContainerSe
 aws lightsail push-container-image --region ap-southeast-2 --service-name testing --label dotnet-inmemorydb --image luoxisteven/dotnet-inmemorydb:latest
 ```
 
-## About k8s in zhhen-dev
-``` bash
-# Apply yaml to k8s
-kubectl apply -f k8s/ingress.yml -n zhhen-dev
-kubectl apply -f k8s/dotnet-mongodb.yaml -n zhhen-dev
-
-# Delete yaml file from namespace
-kubectl -n zhhen-dev delete -f k8s/dotnet-mongodb.yaml
-```
-
-## About k8s in testing
+## About k8s in testing namespace
 ``` bash
 # Apply yaml to k8s
 kubectl apply -f k8s/ssl.yml -n testing # add a ssl.yml credentails
