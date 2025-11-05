@@ -119,7 +119,7 @@ spec:
         app: react-task
     spec:
       imagePullSecrets:
-        - name: acr-pull
+        - name: itmacr
       containers:
         - name: react-task
           image: itmacr.azurecr.io/react-task:latest
