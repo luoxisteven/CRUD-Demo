@@ -15,43 +15,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - zhhen-dev.itm.dev
-    - zhhen-devservice.itm.dev
-    - zhhen-dev-reports.itm.dev
     - crudapi.itm.dev
     - crud.itm.dev
     secretName: itm-tls
   rules:
-  - host: zhhen-dev.itm.dev
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: web
-              port:
-                number: 80
-  - host: zhhen-devservice.itm.dev
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: gateway
-              port:
-                number: 8080
-  - host: zhhen-dev-reports.itm.dev
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: metabase
-              port:
-                number: 3000
   - host: crudapi.itm.dev
     http:
       paths:
