@@ -130,8 +130,10 @@ kubectl -n zhhen-dev delete -f k8s/dotnet-mongodb.yaml
 ## About k8s in testing
 ``` bash
 # Apply yaml to k8s
+kubectl apply -f k8s/ssl.yml -n testing # add a ssl.yml credentails
 kubectl apply -f k8s/ingress-testing.yml -n testing
 kubectl apply -f k8s/dotnet-mongodb.yaml -n testing
+
 
 # Delete yaml file from namespace
 kubectl -n testing delete -f k8s/dotnet-mongodb.yaml
