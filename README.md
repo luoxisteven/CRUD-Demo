@@ -85,6 +85,8 @@ docker compose -f docker-compose.yml up --build
 docker compose -f docker-compose.mongodb.yml up --build
 docker compose -f docker-compose.mysql.yml up --build
 
+docker compose -f docker-compose.mongodb.yml up -d --build --force-recreate
+
 # Create container for signle service
 cd .\dotnet-inmemorydb\
 # Create Image
@@ -111,6 +113,15 @@ docker push luoxisteven/dotnet-mongodb:v2
 aws lightsail push-container-image --region <Region> --service-name <ContainerServiceName> --label <ContainerImageLabel> --image <LocalContainerImageName>:<ImageTag>
 
 aws lightsail push-container-image --region ap-southeast-2 --service-name testing --label dotnet-inmemorydb --image luoxisteven/dotnet-inmemorydb:latest
+```
+
+## About k8s
+``` bash
+# Apply yml to k8s
+kubectl apply -f k8s/gateway.yml -n zhhen-dev
+
+# Delete yaml file from namespace
+kubectl -n zhhen-dev delete -f k8s/dotnet-mongodb.yaml
 ```
 
 ## Setting up Custom Domain for Container:
