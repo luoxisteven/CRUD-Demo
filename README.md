@@ -129,6 +129,21 @@ kubectl apply -f k8s/dotnet-mongodb.yaml -n testing
 kubectl -n testing delete -f k8s/dotnet-mongodb.yaml
 ```
 
+## About Container Registry
+``` bash
+# Build the image first
+az acr login --name itmacr
+docker tag react-task:latest itmacr.azurecr.io/react-task:latest
+docker push itmacr.azurecr.io/react-task:latest
+
+docker tag dotnet-mongodb:latest itmacr.azurecr.io/dotnet-mongodb:latest
+docker push itmacr.azurecr.io/dotnet-mongodb:latest
+
+kubectl apply -f k8s/dotnet-mongodb-acr.yaml -n testing
+
+kubectl -n testing delete -f k8s/dotnet-mongodb-acr.yaml
+```
+
 ## Setting up Custom Domain for Container:
 1) Create a SSL/TLS Certificate
 2) Setting up a CNAME record for the SSL/TLS Certificate

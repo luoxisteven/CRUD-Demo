@@ -51,14 +51,6 @@ const Home = () => {
     <div className="container">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
         <h1 style={{ margin: 0 }}>Task Manager</h1>
-        <a
-          href="https://xiluo.net"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ fontSize: '0.9rem', textDecoration: 'none' }}
-        >
-          {'< Back to xiluo.net'}
-        </a>
       </div>
       
       {error && <div className="error-message">{error}</div>}

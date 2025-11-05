@@ -1,0 +1,133 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+spec:
+  selector:
+    app: mongodb
+  ports:
+    - name: mongo
+      port: 27017
+      targetPort: 27017
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo:7
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-data
+              mountPath: /data/db
+      volumes:
+        - name: mongo-data
+          persistentVolumeClaim:
+            claimName: mongo-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dotnet-mongodb
+spec:
+  selector:
+    app: dotnet-mongodb
+  ports:
+    - name: http
+      port: 8888
+      targetPort: 8888
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dotnet-mongodb
+  template:
+    metadata:
+      labels:
+        app: dotnet-mongodb
+    spec:
+      imagePullSecrets:
+        - name: itmacr
+      containers:
+        - name: dotnet-mongodb
+          image: itmacr.azurecr.io/dotnet-mongodb:latest
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+            - name: ASPNETCORE_URLS
+              value: "http://0.0.0.0:8888"
+            - name: MONGO_URL
+              value: "mongodb://mongodb:27017"
+          ports:
+            - containerPort: 8888
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-task
+spec:
+  selector:
+    app: react-task
+  ports:
+    - name: web
+      port: 5173
+      targetPort: 80
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-task
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-task
+  template:
+    metadata:
+      labels:
+        app: react-task
+    spec:
+      imagePullSecrets:
+        - name: acr-pull
+      containers:
+        - name: react-task
+          image: itmacr.azurecr.io/react-task:latest
+          env:
+            - name: NODE_ENV
+              value: "development"
+            - name: CHOKIDAR_USEPOLLING
+              value: "true"
+          ports:
+            - containerPort: 80
+
