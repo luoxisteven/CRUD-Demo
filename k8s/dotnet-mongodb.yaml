@@ -78,7 +78,7 @@ spec:
     spec:
       containers:
         - name: dotnet-mongodb
-          image: dotnet-mongodb:latest
+          image: luoxisteven/dotnet-mongodb:latest
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
@@ -99,7 +99,7 @@ spec:
   ports:
     - name: web
       port: 5173
-      targetPort: 5173
+      targetPort: 80
   type: NodePort
 ---
 apiVersion: apps/v1
@@ -118,12 +118,12 @@ spec:
     spec:
       containers:
         - name: react-task
-          image: react-task:latest
+          image: luoxisteven/react-task:latest
           env:
             - name: NODE_ENV
               value: "development"
             - name: CHOKIDAR_USEPOLLING
               value: "true"
           ports:
-            - containerPort: 5173
+            - containerPort: 80
 

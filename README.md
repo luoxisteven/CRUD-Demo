@@ -81,10 +81,12 @@ This project demonstrates how the same functionality can be implemented across d
 # Create container for all services
 docker compose up --build
 
+# Create container based on the DockeFile
 docker compose -f docker-compose.yml up --build
 docker compose -f docker-compose.mongodb.yml up --build
 docker compose -f docker-compose.mysql.yml up --build
 
+# Force Recreate
 docker compose -f docker-compose.mongodb.yml up -d --build --force-recreate
 
 # Create container for signle service
@@ -117,8 +119,8 @@ aws lightsail push-container-image --region ap-southeast-2 --service-name testin
 
 ## About k8s
 ``` bash
-# Apply yml to k8s
-kubectl apply -f k8s/gateway.yml -n zhhen-dev
+# Apply yaml to k8s
+kubectl apply -f k8s/dotnet-mongodb.yaml -n zhhen-dev
 
 # Delete yaml file from namespace
 kubectl -n zhhen-dev delete -f k8s/dotnet-mongodb.yaml
