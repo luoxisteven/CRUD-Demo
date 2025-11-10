@@ -9,9 +9,6 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 ## Website Layout
 ![image](artifacts/website.jpg)
 
-## TO DO
-1) Vue.js 
-
 ## System Architecture
 
 - **Backend Options**: 
