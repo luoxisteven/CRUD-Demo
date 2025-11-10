@@ -158,7 +158,7 @@ aws lightsail push-container-image --region ap-southeast-2 --service-name testin
 # Beware of the node architect whether it is ARM64 or x86
 # Build the image first
 az login
-az acr login --name itmacr
+az acr login --name itmacr # Open the Docker Desktop first before running this
 docker tag react-task:latest itmacr.azurecr.io/react-task:latest
 docker push itmacr.azurecr.io/react-task:latest
 
