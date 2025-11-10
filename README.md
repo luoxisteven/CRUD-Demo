@@ -87,7 +87,7 @@ This project demonstrates how the same functionality can be implemented across d
 - Set up SSL certificate `kubectl apply -f k8s/ssl.yml -n testing`
 - If using ACR, set up the ACR credential
   ``` bash
-  kubectl create secret docker-registry itm-secret \
+  kubectl create secret docker-registry acr-secret \
     --docker-server=<your-acr-name>.azurecr.io \
     --docker-username=<service-principal-id> \
     --docker-password=<service-principal-password> \
