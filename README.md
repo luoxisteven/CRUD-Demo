@@ -190,3 +190,9 @@ kubectl apply -f k8s/dotnet-mongodb.yaml -n testing
 # Delete yaml file from namespace
 kubectl -n testing delete -f k8s/dotnet-mongodb.yaml
 ```
+
+## Kubernetes Namespace
+``` bash
+kubectl create namespace testing
+kubectl delete namespace testing
+```
