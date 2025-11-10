@@ -4,6 +4,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 
 - @Author: Steven Luo
 - @Email: steven@xiluo.net
+- @Project Website: [crud.xiluo.net](https://crud.xiluo.net)
 
 ## Website Layout
 ![image](artifacts/website.jpg)
