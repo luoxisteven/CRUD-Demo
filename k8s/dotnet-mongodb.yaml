@@ -79,6 +79,7 @@ spec:
       containers:
         - name: dotnet-mongodb
           image: luoxisteven/dotnet-mongodb:arm64-latest
+          imagePullPolicy: Always # Always pull the latest image
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
@@ -119,6 +120,7 @@ spec:
       containers:
         - name: react-task
           image: luoxisteven/react-task:arm64-latest
+          imagePullPolicy: Always # Always pull the latest image
           env:
             - name: NODE_ENV
               value: "development"

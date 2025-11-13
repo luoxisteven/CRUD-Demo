@@ -24,7 +24,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: react-frontend
+              name: react-task
               port:
                 number: 5173
   - host: crudapi.xiluo.net
@@ -34,6 +34,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: dotnet-backend
+              name: dotnet-mongodb
               port:
                 number: 8888
