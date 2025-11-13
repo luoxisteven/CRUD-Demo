@@ -1,0 +1,39 @@
+services:
+  mongodb:
+    platform: linux/arm64
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  dotnet-mongodb:
+    platform: linux/arm64
+    build:
+      context: ./dotnet-mongodb
+      dockerfile: Dockerfile-ARM64
+    image: dotnet-mongodb:arm64
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://0.0.0.0:8888
+      - MONGO_URL=mongodb://mongodb:27017
+    ports:
+      - "8888:8888"
+    restart: unless-stopped
+  
+  react-task:
+    platform: linux/arm64
+    build:
+      context: ./react-task
+      dockerfile: Dockerfile-ARM64
+    image: react-task:arm64
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
+
+
+
+

@@ -1,0 +1,31 @@
+# Build stage
+FROM --platform=linux/arm64 mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# copy csproj and restore as distinct layers
+COPY dotnet-back.csproj ./
+RUN dotnet restore "dotnet-back.csproj"
+
+# copy the rest of the source
+COPY . .
+
+# publish
+RUN dotnet publish "dotnet-back.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Runtime image
+FROM --platform=linux/arm64 mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+
+# Expose the port configured in launchSettings (http 8888)
+EXPOSE 8888
+
+ENV ASPNETCORE_URLS=http://0.0.0.0:8888 \
+    ASPNETCORE_ENVIRONMENT=Production
+
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "dotnet-back.dll"]
+
+
+
+

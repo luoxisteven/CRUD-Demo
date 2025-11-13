@@ -78,7 +78,7 @@ spec:
     spec:
       containers:
         - name: dotnet-mongodb
-          image: luoxisteven/dotnet-mongodb:latest
+          image: luoxisteven/dotnet-mongodb:arm64-latest
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
@@ -118,7 +118,7 @@ spec:
     spec:
       containers:
         - name: react-task
-          image: luoxisteven/react-task:latest
+          image: luoxisteven/react-task:arm64-latest
           env:
             - name: NODE_ENV
               value: "development"
