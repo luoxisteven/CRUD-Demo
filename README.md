@@ -67,6 +67,8 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
       - [Django Backend with Rest Framework Package](django-restframework/README.md)
   - Node.js
       - [Node.js Backend Documentation](nodejs-back/README.md)
+  - Serverless
+      - [AWS Lambda](serverless/Serverless.md)
 - Frontend
   - React
     - [React Frontend Documentation](react-front/README.md)
@@ -226,15 +228,4 @@ kubectl apply -f k8s/cluster-issuer.yaml
 kubectl apply -f k8s/dotnet-mongodb.yaml -n s-testing
 
 kubectl apply -f k8s/my-ingress.yml -n s-testing
-```
-
-## AWS Lambda Layer Creation
-``` bash
-# pip install pymysql package
-mkdir serverless\build\create
-python -m pip install --target .\serverless\build\create pymysql
-Copy-Item .\serverless\create.py .\serverless\build\create\
-
-# zip
-Compress-Archive -Path .\serverless\build\create\* -DestinationPath .\serverless\create.zip -Force
 ```

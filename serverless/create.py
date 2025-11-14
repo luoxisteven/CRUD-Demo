@@ -59,8 +59,8 @@ def lambda_handler(event, context):
             with conn.cursor() as cur:
                 cur.execute(
                     """
-                    INSERT INTO Tasks (Title, Description, Status)
-                    VALUES (%s, %s, %s)
+                    INSERT INTO Tasks (Id, Title, Description, Status)
+                    VALUES (NULL, %s, %s, %s)
                     """,
                     (title, description, status),
                 )
