@@ -1,7 +1,7 @@
 # Serverless CRUD
 
 - Platform: AWS Lambda
-- Steps to Serverless
+- Road to Serverless
   - Copy the Python script into different Notepad in AWS Lambda
   - Run the script below to create a zip for layer
     ``` bash
