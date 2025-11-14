@@ -68,7 +68,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
   - Node.js
       - [Node.js Backend Documentation](nodejs-back/README.md)
   - Serverless
-      - [AWS Lambda](serverless/Serverless.md)
+      - [AWS Lambda Serverless Documentation](serverless/Serverless.md)
 - Frontend
   - React
     - [React Frontend Documentation](react-front/README.md)
