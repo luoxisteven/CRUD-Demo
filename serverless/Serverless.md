@@ -28,13 +28,25 @@
 - Create Test Event
   ``` json
   {
-    "body": "{\"Title\":\"Buy milk2\",\"Description\":\"2L whole milk from store\",\"Status\":\"Done\"}"
+    "Title": "Buy milk",
+    "Description": "2L whole milk from store",
+    "Status": "In Progress"
   }
   ```
 
-- Get Test Event
+- Update Test Event
+  ```json
+  {
+    "id": "1",
+    "Title": "Task 1",
+    "Description": "Save the world",
+    "Status": "Done"
+  }
+  ```
+
+- Get/Delete Test Event
   ``` json
   {
-    "pathParameters": { "id": "1" }
+    "id": "1"
   }
   ```

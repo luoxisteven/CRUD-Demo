@@ -2,16 +2,6 @@ import json
 import os
 import pymysql
 
-
-def _headers():
-    return {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type,Authorization",
-    }
-
-
 def _conn():
     return pymysql.connect(
         host=os.environ["DB_HOST"],
@@ -26,6 +16,19 @@ def _conn():
 
 
 def _resolve_id(event):
+    # Prefer raw JSON event: {"id": 123}
+    if isinstance(event, dict):
+        if "id" in event:
+            try:
+                return int(event["id"])
+            except Exception:
+                return None
+        if "Id" in event:
+            try:
+                return int(event["Id"])
+            except Exception:
+                return None
+    # Fallback: API Gateway styles
     path_params = event.get("pathParameters") or {}
     query_params = event.get("queryStringParameters") or {}
     if "id" in path_params:
@@ -42,17 +45,10 @@ def _resolve_id(event):
 
 
 def lambda_handler(event, context):
-    if event.get("httpMethod") == "OPTIONS":
-        return {"statusCode": 204, "headers": _headers(), "body": ""}
-
     try:
         _id = _resolve_id(event)
         if _id is None:
-            return {
-                "statusCode": 400,
-                "headers": _headers(),
-                "body": json.dumps({"message": "Missing or invalid 'id' parameter."}),
-            }
+            return {"message": "Missing or invalid 'id' parameter."}
 
         with _conn() as conn:
             with conn.cursor() as cur:
@@ -60,20 +56,12 @@ def lambda_handler(event, context):
                 affected = cur.rowcount
 
         if affected == 0:
-            return {
-                "statusCode": 404,
-                "headers": _headers(),
-                "body": json.dumps({"message": "Not found."}),
-            }
+            return {"message": "Not found."}
 
-        return {"statusCode": 204, "headers": _headers(), "body": ""}
+        return {"deleted": True}
 
     except Exception as e:
         print(f"ERROR: {e}")
-        return {
-            "statusCode": 500,
-            "headers": _headers(),
-            "body": json.dumps({"message": "Internal Server Error"}),
-        }
+        return {"message": "Internal Server Error"}
 
 
