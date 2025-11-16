@@ -6,11 +6,20 @@
   - Copy the Python script into different Notepad in AWS Lambda
   - Build a Lambda Layer for pymysql (exact path and zip):
     ``` powershell
-    # build layer to: serverless-mysql\build\layer\python
+    # build layer to: serverless-mysql\layer\python
     # output zip:     serverless-mysql\pymysql-layer.zip
-    mkdir serverless-mysql\build\layer\python
-    python -m pip install --target .\serverless-mysql\build\layer\python pymysql
-    Compress-Archive -Path .\serverless-mysql\build\layer\python\* -DestinationPath .\serverless-mysql\pymysql-layer.zip -Force
+    mkdir serverless-mysql\layer\python
+    python -m pip install --target .\serverless-mysql\layer\python pymysql
+    Compress-Archive -Path .\serverless-mysql\layer\python\* -DestinationPath .\serverless-mysql\pymysql-layer.zip -Force
+    ```
+    ``` bash
+    # macOS/Linux (bash)
+    # build layer to: serverless-mysql/layer/python
+    # output zip:     serverless-mysql/pymysql-layer.zip
+    mkdir -p serverless-mysql/layer/python
+    python3 -m pip install --upgrade pip
+    python3 -m pip install -t serverless-mysql/layer/python pymysql
+    ( cd serverless-mysql/layer && zip -r ../pymysql-layer.zip python )
     ```
   - Option A: Package each function code only (use the Layer for dependencies)
     ``` bash
@@ -42,12 +51,25 @@
     Compress-Archive -Path .\serverless-mysql\build\update\* -DestinationPath .\serverless-mysql\update.zip -Force
     Compress-Archive -Path .\serverless-mysql\build\delete\* -DestinationPath .\serverless-mysql\delete.zip -Force
     ```
+    ``` bash
+    # macOS/Linux (bash) — example for one function (Create). Repeat for others.
+    mkdir -p serverless-mysql/build/create
+    cp serverless-mysql/create.py serverless-mysql/build/create/
+    ( cd serverless-mysql/build/create && zip -r ../../create.zip . )
+    ```
   - Option B: Vendor dependencies into each function zip (no Layer). Replace Copy-Item step with:
     ``` powershell
     mkdir serverless-mysql\build\create
     python -m pip install --target .\serverless-mysql\build\create pymysql
     Copy-Item .\serverless-mysql\create.py .\serverless-mysql\build\create\
     Compress-Archive -Path .\serverless-mysql\build\create\* -DestinationPath .\serverless-mysql\create.zip -Force
+    ```
+    ``` bash
+    # macOS/Linux (bash)
+    mkdir -p serverless-mysql/build/create
+    python3 -m pip install -t serverless-mysql/build/create pymysql
+    cp serverless-mysql/create.py serverless-mysql/build/create/
+    ( cd serverless-mysql/build/create && zip -r ../../create.zip . )
     ```
   - Add a layer for the python package. (In this case is `pymysql` - `serverless-mysql\pymysql-layer.zip`)
   - Remember to add Environment Variables into the functions

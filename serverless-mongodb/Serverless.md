@@ -12,11 +12,20 @@
   - `Delete` -> `delete.py`
 - Build a Lambda Layer for pymongo (exact path and zip):
   ```powershell
-  # build layer to: serverless-mongodb\build\layer\python
+  # build layer to: serverless-mongodb\layer\python
   # output zip:     serverless-mongodb\pymongo-layer.zip
-  mkdir serverless-mongodb\build\layer\python
-  python -m pip install --target .\serverless-mongodb\build\layer\python pymongo
-  Compress-Archive -Path .\serverless-mongodb\build\layer\python\* -DestinationPath .\serverless-mongodb\pymongo-layer.zip -Force
+  mkdir serverless-mongodb\layer\python
+  python -m pip install --target .\serverless-mongodb\layer\python pymongo
+  Compress-Archive -Path .\serverless-mongodb\layer\python\* -DestinationPath .\serverless-mongodb\pymongo-layer.zip -Force
+  ```
+  ```bash
+  # macOS/Linux (bash)
+  # build layer to: serverless-mongodb/layer/python
+  # output zip:     serverless-mongodb/pymongo-layer.zip
+  mkdir -p serverless-mongodb/layer/python
+  python3 -m pip install --upgrade pip
+  python3 -m pip install -t serverless-mongodb/layer/python pymongo
+  ( cd serverless-mongodb/layer && zip -r ../pymongo-layer.zip python )
   ```
 - Option A: Package each function code only (use the Layer for dependencies)
   ```powershell
@@ -45,12 +54,25 @@
   Copy-Item .\serverless-mongodb\delete.py .\serverless-mongodb\build\delete\
   Compress-Archive -Path .\serverless-mongodb\build\delete\* -DestinationPath .\serverless-mongodb\delete.zip -Force
   ```
+  ```bash
+  # macOS/Linux (bash) — example for one function (Create). Repeat for others.
+  mkdir -p serverless-mongodb/build/create
+  cp serverless-mongodb/create.py serverless-mongodb/build/create/
+  ( cd serverless-mongodb/build/create && zip -r ../../create.zip . )
+  ```
 - Option B: Vendor dependencies into each function zip (no Layer)
   ```powershell
   mkdir serverless-mongodb\build\create
   python -m pip install --target .\serverless-mongodb\build\create pymongo
   Copy-Item .\serverless-mongodb\create.py .\serverless-mongodb\build\create\
   Compress-Archive -Path .\serverless-mongodb\build\create\* -DestinationPath .\serverless-mongodb\create.zip -Force
+  ```
+  ```bash
+  # macOS/Linux (bash)
+  mkdir -p serverless-mongodb/build/create
+  python3 -m pip install -t serverless-mongodb/build/create pymongo
+  cp serverless-mongodb/create.py serverless-mongodb/build/create/
+  ( cd serverless-mongodb/build/create && zip -r ../../create.zip . )
   ```
 - Enable Lambda proxy integration in API Gateway for each route.
 - Remember to set Environment Variables and click “Deploy” in each Lambda.
