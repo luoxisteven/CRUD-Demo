@@ -1,6 +1,6 @@
 # CRUD-Demo
 
-A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) operations implemented with the ability to switch between different backend frameworks, databases, and API patterns while maintaining a consistent frontend. It also includes script and commands on Kubernetes services and severless backend. This repository features minimalistic code and package usage, designed for interview scenarios and code tests.
+A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) operations implemented with the ability to switch between different backend frameworks, databases, and API patterns while maintaining a consistent frontend. It also includes script and commands on **Docker and Kubernetes** services and **Severless** backend. This repository features minimalistic code and package usage, designed for interview scenarios and code tests.
 
 - @Author: Steven Luo
 - @Email: steven@xiluo.net
@@ -68,7 +68,7 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
   - Node.js
       - [Node.js Backend Documentation](nodejs-back/README.md)
   - Serverless
-      - [AWS Lambda Serverless Documentation](serverless/Serverless.md)
+      - [AWS Lambda Serverless Documentation](serverless-mysql/Serverless.md)
 - Frontend
   - React
     - [React Frontend Documentation](react-front/README.md)

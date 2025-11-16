@@ -15,13 +15,22 @@ def _conn():
         autocommit=True,
     )
     
+def _resp(status, obj):
+    return {
+        "statusCode": status,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": json.dumps(obj, ensure_ascii=False),
+    }
+
 def lambda_handler(event, context):
     try:
         # Accept direct raw JSON event
         data = event if isinstance(event, dict) else {}
         title = (data.get("Title") or data.get("title") or "").strip()
         if not title:
-            return {"message": "Title is required."}
+            return _resp(400, {"message": "Title is required."})
 
         description = (data.get("Description") or data.get("description") or "") or ""
         status = (data.get("Status") or data.get("status") or "To Do") or "To Do"
@@ -37,15 +46,18 @@ def lambda_handler(event, context):
                 )
                 new_id = cur.lastrowid
 
-        return {
-            "Id": int(new_id),
-            "Title": title,
-            "Description": description,
-            "Status": status,
-        }
+        return _resp(
+            201,
+            {
+                "Id": int(new_id),
+                "Title": title,
+                "Description": description,
+                "Status": status,
+            },
+        )
 
     except Exception as e:
         print(f"ERROR: {e}")
-        return {"message": "Internal Server Error"}
+        return _resp(500, {"message": "Internal Server Error"})
 
 

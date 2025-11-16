@@ -14,6 +14,16 @@ def _conn():
     )
 
 
+def _resp(status, obj):
+    return {
+        "statusCode": status,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": json.dumps(obj, ensure_ascii=False),
+    }
+
+
 def lambda_handler(event, context):
     try:
         with _conn() as conn:
@@ -23,9 +33,9 @@ def lambda_handler(event, context):
                 )
                 rows = cur.fetchall() or []
 
-        return rows
+        return _resp(200, rows)
     except Exception as e:
         print(f"ERROR: {e}")
-        return {"message": "Internal Server Error"}
+        return _resp(500, {"message": "Internal Server Error"})
 
 

@@ -15,6 +15,16 @@ def _conn():
     )
 
 
+def _resp(status, obj):
+    return {
+        "statusCode": status,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": json.dumps(obj, ensure_ascii=False),
+    }
+
+
 def _resolve_id(event):
     # Prefer raw JSON event: {"id": 123}
     if isinstance(event, dict):
@@ -48,7 +58,7 @@ def lambda_handler(event, context):
     try:
         _id = _resolve_id(event)
         if _id is None:
-            return {"message": "Missing or invalid 'id' parameter."}
+            return _resp(400, {"message": "Missing or invalid 'id' parameter."})
 
         # Accept raw JSON event as payload
         data = event if isinstance(event, dict) else {}
@@ -75,7 +85,7 @@ def lambda_handler(event, context):
             params.append(status)
 
         if not set_parts:
-            return {"message": "No fields to update."}
+            return _resp(400, {"message": "No fields to update."})
 
         with _conn() as conn:
             with conn.cursor() as cur:
@@ -90,12 +100,12 @@ def lambda_handler(event, context):
                 row = cur.fetchone()
 
         if not row:
-            return {"message": "Not found."}
+            return _resp(404, {"message": "Not found."})
 
-        return row
+        return _resp(200, row)
 
     except Exception as e:
         print(f"ERROR: {e}")
-        return {"message": "Internal Server Error"}
+        return _resp(500, {"message": "Internal Server Error"})
 
 

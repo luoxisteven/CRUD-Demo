@@ -11,8 +11,17 @@ def _conn():
         database=os.environ["DB_NAME"],
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
-        autocommit=True,
     )
+
+
+def _resp(status, obj):
+    return {
+        "statusCode": status,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": json.dumps(obj, ensure_ascii=False),
+    }
 
 
 def _resolve_id(event):
@@ -48,20 +57,22 @@ def lambda_handler(event, context):
     try:
         _id = _resolve_id(event)
         if _id is None:
-            return {"message": "Missing or invalid 'id' parameter."}
+            return _resp(400, {"message": "Missing or invalid 'id' parameter."})
 
         with _conn() as conn:
             with conn.cursor() as cur:
-                cur.execute("DELETE FROM Tasks WHERE Id = %s", (_id,))
-                affected = cur.rowcount
+                cur.execute(
+                    "SELECT Id, Title, Description, Status FROM Tasks WHERE Id = %s",
+                    (_id,),
+                )
+                row = cur.fetchone()
 
-        if affected == 0:
-            return {"message": "Not found."}
+        if not row:
+            return _resp(404, {"message": "Not found."})
 
-        return {"deleted": True}
-
+        return _resp(200, row)
     except Exception as e:
         print(f"ERROR: {e}")
-        return {"message": "Internal Server Error"}
+        return _resp(500, {"message": "Internal Server Error"})
 
 
