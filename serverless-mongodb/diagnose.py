@@ -111,5 +111,3 @@ def lambda_handler(event, context):
     except Exception as e:
         print(f"ERROR: {e}")
         return _resp(500, {"message": "Internal Server Error"})
-
-

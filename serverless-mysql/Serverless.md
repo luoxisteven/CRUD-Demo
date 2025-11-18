@@ -1,7 +1,7 @@
 # Serverless CRUD
 
 - Platform: AWS Lambda
-- Database: MySQL
+- Database: AWS RDS - MySQL
 - Road to Serverless
   - Copy the Python script into different Notepad in AWS Lambda
   - Build a Lambda Layer for pymysql (exact path and zip):

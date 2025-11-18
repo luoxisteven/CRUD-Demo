@@ -71,6 +71,40 @@ aws lightsail push-container-image --region <Region> --service-name <ContainerSe
 aws lightsail push-container-image --region ap-southeast-2 --service-name testing --label dotnet-inmemorydb --image luoxisteven/dotnet-inmemorydb:latest
 ```
 
+
+## Use my own k8s
+``` bash
+# Image preparation
+docker compose -f docker-compose.mongodb.arm64.yml up --build
+docker tag dotnet-mongodb:arm64 luoxisteven/dotnet-mongodb:arm64-latest
+docker push luoxisteven/dotnet-mongodb:arm64-latest
+docker tag react-task:arm64 luoxisteven/react-task:arm64-latest
+docker push luoxisteven/react-task:arm64-latest
+
+# AKS Prepartion
+# First Create a AKS in Azure Platform
+az login
+az aks get-credentials --resource-group crud.xiluo.net --name crud-xi-luo
+
+kubectl config use-context crud-xi-luo
+kubectl create namespace s-testing
+
+# Set up SSL
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.14.0/deploy/static/provider/cloud/deploy.yaml
+# Wait for the External IP and Not Pending
+kubectl -n ingress-nginx get svc ingress-nginx-controller
+# Set an A Record pointing to External-IP: aks -> 4.237.106.143
+# Set two CNAME Record pointing to the A record: crud2 -> aks.xiluo.net, crudapi -> aks.xiluo.net
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
+# Wait and Ready
+kubectl apply -f k8s/cluster-issuer.yaml
+# Check for the image and the Architecture of the Nodes
+# Make sure the Architecture of the Nodes align with your Images
+kubectl apply -f k8s/dotnet-mongodb.yaml -n s-testing
+
+kubectl apply -f k8s/my-ingress.yml -n s-testing
+```
+
 ## Setting up Custom Domain for Container (Try Amazon API Gateway and SSL):
 1) Create a SSL/TLS Certificate
 2) Setting up a CNAME record for the SSL/TLS Certificate
@@ -116,37 +150,4 @@ kubectl -n testing delete -f k8s/dotnet-mongodb.yaml
 ``` bash
 kubectl create namespace testing
 kubectl delete namespace testing
-```
-
-## Use my own k8s
-``` bash
-# Image preparation
-docker compose -f docker-compose.mongodb.arm64.yml up --build
-docker tag dotnet-mongodb:arm64 luoxisteven/dotnet-mongodb:arm64-latest
-docker push luoxisteven/dotnet-mongodb:arm64-latest
-docker tag react-task:arm64 luoxisteven/react-task:arm64-latest
-docker push luoxisteven/react-task:arm64-latest
-
-# AKS Prepartion
-# First Create a AKS in Azure Platform
-az login
-az aks get-credentials --resource-group crud.xiluo.net --name crud-xi-luo
-
-kubectl config use-context crud-xi-luo
-kubectl create namespace s-testing
-
-# Set up SSL
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.14.0/deploy/static/provider/cloud/deploy.yaml
-# Wait for the External IP and Not Pending
-kubectl -n ingress-nginx get svc ingress-nginx-controller
-# Set an A Record pointing to External-IP: aks -> 4.237.106.143
-# Set two CNAME Record pointing to the A record: crud2 -> aks.xiluo.net, crudapi -> aks.xiluo.net
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/latest/download/cert-manager.yaml
-# Wait and Ready
-kubectl apply -f k8s/cluster-issuer.yaml
-# Check for the image and the Architecture of the Nodes
-# Make sure the Architecture of the Nodes align with your Images
-kubectl apply -f k8s/dotnet-mongodb.yaml -n s-testing
-
-kubectl apply -f k8s/my-ingress.yml -n s-testing
 ```

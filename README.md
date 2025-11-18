@@ -6,6 +6,29 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 - @Email: steven@xiluo.net
 - @Website: [crud.xiluo.net](https://crud.xiluo.net)
 
+## Documentation
+- Docker and Kubernetes
+  - [Docker and Kubernetes Documentation](k8s/docker&k8s.md)
+- Backend
+  - Serverless
+      - [AWS Lambda Serverless with AWS RDS Documentation](serverless-mysql/Serverless.md)
+      - [AWS Lambda Serverless with AWS VPC linking with Server's DB Documentation](serverless-mongodb/Serverless.md)
+  - Dotnet
+      - [.NET Backend and In-Memory DB Documentation](dotnet-inmemorydb/README.md)
+      - [.NET Backend and JSON Documentation](dotnet-json/README.md)
+      - [.NET Backend and MySQL Documentation](dotnet-mysql/README.md)
+      - [.NET Backend and MongoDB Documentation](dotnet-mongodb/README.md)
+  - Django
+      - [Django Backend Basic](django-basic/README.md)
+      - [Django Backend with Rest Framework Package](django-restframework/README.md)
+  - Node.js
+      - [Node.js Backend Documentation](nodejs-back/README.md)
+- Frontend
+  - React
+    - [React Frontend Documentation](react-front/README.md)
+  - Angular
+    - [Angular Frontend Documentation](angular-front/README.md)
+
 ## Website Layout
 ![image](artifacts/website.jpg)
 
@@ -53,26 +76,3 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 - Description (text)
 - Status (To Do, In Progress, Done)
 - Created and updated timestamps
-
-## Documentation
-
-- Backend
-  - Dotnet
-      - [.NET Backend and In-Memory DB Documentation](dotnet-inmemorydb/README.md)
-      - [.NET Backend and JSON Documentation](dotnet-json/README.md)
-      - [.NET Backend and MySQL Documentation](dotnet-mysql/README.md)
-      - [.NET Backend and MongoDB Documentation](dotnet-mongodb/README.md)
-  - Django
-      - [Django Backend Basic](django-basic/README.md)
-      - [Django Backend with Rest Framework Package](django-restframework/README.md)
-  - Node.js
-      - [Node.js Backend Documentation](nodejs-back/README.md)
-  - Serverless
-      - [AWS Lambda Serverless Documentation](serverless-mysql/Serverless.md)
-- Frontend
-  - React
-    - [React Frontend Documentation](react-front/README.md)
-  - Angular
-    - [Angular Frontend Documentation](angular-front/README.md)
-- Docker and Kubernetes
-  - [Docker and Kubernetes Documentation](k8s/docker&k8s.md)
