@@ -32,7 +32,10 @@ def _resp(status, obj):
     return {
         "statusCode": status,
         "headers": {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key',
+            'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
         },
         "body": json.dumps(obj, ensure_ascii=False),
     }
@@ -157,3 +160,5 @@ def lambda_handler(event, context):
     except Exception as e:
         print(f"ERROR: {e}")
         return _resp(500, {"message": "Internal Server Error"})
+
+
