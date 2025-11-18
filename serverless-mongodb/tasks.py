@@ -6,7 +6,8 @@ from bson.objectid import ObjectId
 
 _mongo_client = None
 
-def _get_db_collection():
+
+def _get_db():
     global _mongo_client
     if _mongo_client is None:
         mongo_url = os.environ.get("MONGO_URL")
@@ -24,15 +25,10 @@ def _get_db_collection():
                 mongo_url = f"mongodb://{host}:{port}"
         _mongo_client = MongoClient(mongo_url)
     db_name = os.environ.get("MONGO_DB_NAME")
-    db = _mongo_client[db_name]
-    collection_name = os.environ.get("MONGO_COLLECTION")
-    if not collection_name:
-        raise ValueError("MONGO_COLLECTION is required")
-    return db[collection_name]
+    return _mongo_client[db_name]
 
 
 def _resp(status, obj):
-    # Access Control Headers should be included to avoid CORS errors
     return {
         "statusCode": status,
         "headers": {
@@ -45,6 +41,7 @@ def _resp(status, obj):
     }
 
 def _parse_event(event):
+    # Accept raw JSON event or API Gateway proxy with body
     if isinstance(event, dict):
         if "body" in event:
             body = event.get("body")
@@ -60,17 +57,39 @@ def _parse_event(event):
     return {}
 
 
+def _to_oid(id_str):
+    try:
+        return ObjectId(id_str)
+    except Exception:
+        return None
+
+
 def lambda_handler(event, context):
     try:
-        action = event.get("action")
-        
-        col = _get_db_collection()
+        payload = _parse_event(event)
+        action = (payload.get("action") or payload.get("Action") or payload.get("method") or payload.get("op") or "").lower()
+
+        db = _get_db()
+        collection_name = os.environ.get("MONGO_COLLECTION")
+        col = db[collection_name]
+
+        if action == "list":
+            cur = col.find(
+                {},
+                {"title": 1, "description": 1, "status": 1},
+            ).sort([("_id", DESCENDING)])
+            rows = [{
+                "Id": str(doc["_id"]),
+                "title": doc.get("title", ""),
+                "description": doc.get("description", ""),
+                "status": doc.get("status", ""),
+            } for doc in cur]
+            return _resp(200, rows)
 
         if action == "get":
-            id_str = event.get("id") or event.get("Id")
-            try:
-                oid = ObjectId(id_str)
-            except Exception:
+            id_str = payload.get("id") or payload.get("Id")
+            oid = _to_oid(id_str)
+            if not oid:
                 return _resp(400, {"message": "Missing or invalid 'id'."})
             doc = col.find_one({"_id": oid}, {"title": 1, "description": 1, "status": 1})
             if not doc:
@@ -81,12 +100,13 @@ def lambda_handler(event, context):
                 "description": doc.get("description", ""),
                 "status": doc.get("status", ""),
             })
-        elif action == "create":
-            title = event.get("title")
-            description = event.get("description", "")
-            status = event.get("status", "To Do")
+
+        if action == "create":
+            title = (payload.get("Title") or payload.get("title") or "").strip()
             if not title:
                 return _resp(400, {"message": "Title is required."})
+            description = payload.get("Description") or payload.get("description") or ""
+            status = payload.get("Status") or payload.get("status") or "To Do"
             res = col.insert_one({
                 "title": title,
                 "description": description,
@@ -98,16 +118,19 @@ def lambda_handler(event, context):
                 "description": description,
                 "status": status,
             })
-        elif action == "update":
-            id_str = event.get("id")
-            oid = ObjectId(id_str)
+
+        if action == "update":
+            id_str = payload.get("id") or payload.get("Id")
+            oid = _to_oid(id_str)
+            if not oid:
+                return _resp(400, {"message": "Missing or invalid 'id'."})
             update_doc = {}
-            if "title" in event:
-                update_doc["title"] = event.get("title")
-            if "description" in event:
-                update_doc["description"] = event.get("description")
-            if "status" in event:
-                update_doc["status"] = event.get("status")
+            if "Title" in payload or "title" in payload:
+                update_doc["title"] = payload.get("Title") if "Title" in payload else payload.get("title")
+            if "Description" in payload or "description" in payload:
+                update_doc["description"] = payload.get("Description") if "Description" in payload else payload.get("description")
+            if "Status" in payload or "status" in payload:
+                update_doc["status"] = payload.get("Status") if "Status" in payload else payload.get("status")
             if not update_doc:
                 return _resp(400, {"message": "No fields to update."})
             res = col.update_one({"_id": oid}, {"$set": update_doc})
@@ -120,32 +143,20 @@ def lambda_handler(event, context):
                 "description": doc.get("description", ""),
                 "status": doc.get("status", ""),
             })
-        elif action == "delete":
-            id_str = event.get("id")
-            res = col.delete_one({"_id": ObjectId(id_str)})
+
+        if action == "delete":
+            id_str = payload.get("id") or payload.get("Id")
+            oid = _to_oid(id_str)
+            if not oid:
+                return _resp(400, {"message": "Missing or invalid 'id'."})
+            res = col.delete_one({"_id": oid})
             if res.deleted_count == 0:
                 return _resp(404, {"message": "Not found."})
             return _resp(200, {"deleted": True})
-        else:
-            cur = col.find(
-                {}, # filter
-                {"title": 1, "description": 1, "status": 1}, # projection (which columns to return)
-            ).sort([("_id", DESCENDING)])
-            rows = [{
-                "Id": str(doc["_id"]),
-                "title": doc.get("title", ""),
-                "description": doc.get("description", ""),
-                "status": doc.get("status", ""),
-            } for doc in cur]
-            return _resp(200, rows)
 
         # Unknown or missing action
         return _resp(400, {"message": "Missing or invalid 'action'. Use one of: list, get, create, update, delete."})
 
-    except ValueError as ve:
-        return _resp(400, {"message": str(ve)})
     except Exception as e:
         print(f"ERROR: {e}")
         return _resp(500, {"message": "Internal Server Error"})
-
-
