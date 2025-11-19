@@ -1,6 +1,6 @@
 # CRUD-Demo
 
-A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) operations implemented with the ability to switch between different backend frameworks, databases, and API patterns while maintaining a consistent frontend. It also includes script and commands on **Docker and Kubernetes** services and **Severless** backend. This repository features minimalistic code and package usage, designed for interview scenarios and code tests.
+A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) operations implemented with the ability to switch between different backend frameworks, databases, and API patterns while maintaining a consistent frontend. It also includes script and commands on `Docker and Kubernetes` services and `Severless` backend. This repository features minimalistic code and package usage, designed for interview scenarios and code tests.
 
 - @Author: Steven Luo
 - @Email: steven@xiluo.net

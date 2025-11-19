@@ -69,6 +69,15 @@ I could absolutely use a cloud MongoDB service like MongoDB Atlas. However, usin
     "Status": "Done"
   }
   ```
+- Create 
+  ```json
+  {
+    "action": "create",
+    "Title": "Mission 1",
+    "Description": "Buy milk (updated)",
+    "Status": "Done"
+  }
+  ```
 - Delete
   ```json
   { "action": "delete", "id": "690c0eb472621a0933bb7d18" }
