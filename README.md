@@ -17,7 +17,7 @@ A demonstration project featuring Docker and Kubernetes orchestration scripts, a
       - [.NET and In-Memory DB](dotnet-inmemorydb/README.md)
       - [.NET and JSON](dotnet-json/README.md)
       - [.NET and MySQL](dotnet-mysql/README.md)
-      - [.NETand MongoDB n](dotnet-mongodb/README.md)
+      - [.NETand MongoDB](dotnet-mongodb/README.md)
   - Django
       - [Django Basic](django-basic/README.md)
       - [Django with Rest Framework Package](django-restframework/README.md)
@@ -30,7 +30,6 @@ A demonstration project featuring Docker and Kubernetes orchestration scripts, a
     - [Angular Frontend Documentation](angular-front/README.md)
 
 ## System Architecture
-
 - **Backend Options**: 
   - .NET Core
   - Node.js/Express
@@ -57,7 +56,6 @@ A demonstration project featuring Docker and Kubernetes orchestration scripts, a
 - **Kubernetes**
 
 ## API Endpoints
-
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | /api/task | Retrieve all tasks |
@@ -67,7 +65,6 @@ A demonstration project featuring Docker and Kubernetes orchestration scripts, a
 | DELETE | /api/task/:id | Delete a task |
 
 ## Task Model
-
 **Each task contains:**
 - Title (string)
 - Description (text)
