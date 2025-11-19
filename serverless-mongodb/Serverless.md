@@ -3,7 +3,7 @@
 - Platform: AWS Lambda
 - Database: MongoDB in AWS Lighsail Server
 - Virtual Network: AWS VPC
-- Python Script: `./serverless-mongodb/tasks.py`
+- Python Script: `./serverless-mongodb/both-task.py` (task.py only works in remote end)
 
 ## Why I am going to a server's database in Serverless backend?
 I could absolutely use a cloud MongoDB service like MongoDB Atlas. However, using a cloud database incurs additional costs. To reduce my expenses, I'm trying to connect my Lambda function to a MongoDB database hosted on my own server. For security purposes, I'm using AWS VPC to establish a connection between my server and Lambda function, without exposing port 27017 to external visitors.
