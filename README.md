@@ -17,7 +17,7 @@ A demonstration project featuring Docker and Kubernetes orchestration scripts, a
       - [.NET and In-Memory DB](dotnet-inmemorydb/README.md)
       - [.NET and JSON](dotnet-json/README.md)
       - [.NET and MySQL](dotnet-mysql/README.md)
-      - [.NETand MongoDB](dotnet-mongodb/README.md)
+      - [.NET and MongoDB](dotnet-mongodb/README.md)
   - Django
       - [Django Basic](django-basic/README.md)
       - [Django with Rest Framework Package](django-restframework/README.md)
