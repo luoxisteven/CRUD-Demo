@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 
 _mongo_client = None
 
-def _get_db_collection():
+def _get_db():
     global _mongo_client
     if _mongo_client is None:
         mongo_url = os.environ.get("MONGO_URL")
@@ -24,15 +24,11 @@ def _get_db_collection():
                 mongo_url = f"mongodb://{host}:{port}"
         _mongo_client = MongoClient(mongo_url)
     db_name = os.environ.get("MONGO_DB_NAME")
-    db = _mongo_client[db_name]
     collection_name = os.environ.get("MONGO_COLLECTION")
-    if not collection_name:
-        raise ValueError("MONGO_COLLECTION is required")
-    return db[collection_name]
+    return _mongo_client[db_name][collection_name]
 
 
 def _resp(status, obj):
-    # Access Control Headers should be included to avoid CORS errors
     return {
         "statusCode": status,
         "headers": {
@@ -44,34 +40,29 @@ def _resp(status, obj):
         "body": json.dumps(obj, ensure_ascii=False),
     }
 
-def _parse_event(event):
-    if isinstance(event, dict):
-        if "body" in event:
-            body = event.get("body")
-            if not body:
-                return {}
-            if isinstance(body, (bytes, bytearray)):
-                body = body.decode("utf-8")
-            try:
-                return json.loads(body)
-            except Exception:
-                return {}
-        return event
-    return {}
-
 
 def lambda_handler(event, context):
     try:
-        action = event.get("action")
-        
-        col = _get_db_collection()
+        payload = json.loads(event.get("body"))
+        action = payload.get("action").lower()
+        col = _get_db()
 
-        if action == "get":
-            id_str = event.get("id") or event.get("Id")
-            try:
-                oid = ObjectId(id_str)
-            except Exception:
-                return _resp(400, {"message": "Missing or invalid 'id'."})
+        if action == "list":
+            cur = col.find(
+                {},
+                {"title": 1, "description": 1, "status": 1},
+            ).sort([("_id", DESCENDING)])
+            rows = [{
+                "Id": str(doc["_id"]),
+                "title": doc.get("title", ""),
+                "description": doc.get("description", ""),
+                "status": doc.get("status", ""),
+            } for doc in cur]
+            return _resp(200, rows)
+
+        elif action == "get":
+            id_str = payload.get("id")
+            oid = ObjectId(id_str)
             doc = col.find_one({"_id": oid}, {"title": 1, "description": 1, "status": 1})
             if not doc:
                 return _resp(404, {"message": "Not found."})
@@ -81,12 +72,17 @@ def lambda_handler(event, context):
                 "description": doc.get("description", ""),
                 "status": doc.get("status", ""),
             })
+
         elif action == "create":
-            title = event.get("title")
-            description = event.get("description", "")
-            status = event.get("status", "To Do")
+            title = payload.get("title")
+
             if not title:
                 return _resp(400, {"message": "Title is required."})
+            description = payload.get("description", "")
+            status = payload.get("status", "To Do")
+            if len(title) > 100 or len(description) > 200 or len(status) > 50:
+                return _resp(400, {"message": "Input length exceeds limits."})
+                
             res = col.insert_one({
                 "title": title,
                 "description": description,
@@ -98,16 +94,18 @@ def lambda_handler(event, context):
                 "description": description,
                 "status": status,
             })
+
         elif action == "update":
-            id_str = event.get("id")
+            id_str = payload.get("id")
             oid = ObjectId(id_str)
             update_doc = {}
-            if "title" in event:
-                update_doc["title"] = event.get("title")
-            if "description" in event:
-                update_doc["description"] = event.get("description")
-            if "status" in event:
-                update_doc["status"] = event.get("status")
+            limits = {"title": 100, "description": 200, "status": 50}
+            for key, max_len in limits.items():
+                if key in payload:
+                    value = payload.get(key)
+                    if len(value) > max_len:
+                        return _resp(400, {"message": "Input length exceeds limits."})
+                    update_doc[key] = value
             if not update_doc:
                 return _resp(400, {"message": "No fields to update."})
             res = col.update_one({"_id": oid}, {"$set": update_doc})
@@ -120,32 +118,18 @@ def lambda_handler(event, context):
                 "description": doc.get("description", ""),
                 "status": doc.get("status", ""),
             })
+
         elif action == "delete":
-            id_str = event.get("id")
-            res = col.delete_one({"_id": ObjectId(id_str)})
+            id_str = payload.get("id")
+            oid = ObjectId(id_str)
+            res = col.delete_one({"_id": oid})
             if res.deleted_count == 0:
                 return _resp(404, {"message": "Not found."})
             return _resp(200, {"deleted": True})
-        else:
-            cur = col.find(
-                {}, # filter
-                {"title": 1, "description": 1, "status": 1}, # projection (which columns to return)
-            ).sort([("_id", DESCENDING)])
-            rows = [{
-                "Id": str(doc["_id"]),
-                "title": doc.get("title", ""),
-                "description": doc.get("description", ""),
-                "status": doc.get("status", ""),
-            } for doc in cur]
-            return _resp(200, rows)
 
         # Unknown or missing action
         return _resp(400, {"message": "Missing or invalid 'action'. Use one of: list, get, create, update, delete."})
 
-    except ValueError as ve:
-        return _resp(400, {"message": str(ve)})
     except Exception as e:
         print(f"ERROR: {e}")
         return _resp(500, {"message": "Internal Server Error"})
-
-
