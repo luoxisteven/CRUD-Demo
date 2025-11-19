@@ -1,36 +1,33 @@
-# CRUD-Demo
+# Multi-Stack CRUD Demo
 
-A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) operations implemented with the ability to switch between different backend frameworks, databases, and API patterns while maintaining a consistent frontend. It also includes script and commands on `Docker and Kubernetes` services and `Severless` backend. This repository features minimalistic code and package usage, designed for interview scenarios and code tests.
+A demonstration project featuring Docker and Kubernetes orchestration scripts, along with serverless backend deployment, showcasing basic CRUD (Create, Read, Update, Delete) operations with the flexibility to switch between different backend frameworks, databases, and API patterns while maintaining a consistent frontend. The repository includes comprehensive commands for container orchestration and cloud-native deployments, with minimalistic code and minimal package dependencies, specifically designed for interview scenarios and technical assessments.
 
 - @Author: Steven Luo
 - @Email: steven@xiluo.net
 - @Website: [crud.xiluo.net](https://crud.xiluo.net)
 
-## Documentation
+## Documentations
 - Docker and Kubernetes
   - [Docker and Kubernetes Documentation](k8s/docker&k8s.md)
 - Backend
   - Serverless
-      - [AWS Lambda Serverless with AWS RDS Documentation](serverless-mysql/Serverless.md)
-      - [AWS Lambda Serverless with AWS VPC linking with Server's DB Documentation](serverless-mongodb/Serverless.md)
+      - [AWS Lambda Serverless with AWS RDS](serverless-mysql/Serverless.md)
+      - [AWS Lambda Serverless with AWS VPC and MongoDB](serverless-mongodb/Serverless.md)
   - Dotnet
-      - [.NET Backend and In-Memory DB Documentation](dotnet-inmemorydb/README.md)
-      - [.NET Backend and JSON Documentation](dotnet-json/README.md)
-      - [.NET Backend and MySQL Documentation](dotnet-mysql/README.md)
-      - [.NET Backend and MongoDB Documentation](dotnet-mongodb/README.md)
+      - [.NET and In-Memory DB](dotnet-inmemorydb/README.md)
+      - [.NET and JSON](dotnet-json/README.md)
+      - [.NET and MySQL](dotnet-mysql/README.md)
+      - [.NETand MongoDB n](dotnet-mongodb/README.md)
   - Django
-      - [Django Backend Basic](django-basic/README.md)
-      - [Django Backend with Rest Framework Package](django-restframework/README.md)
+      - [Django Basic](django-basic/README.md)
+      - [Django with Rest Framework Package](django-restframework/README.md)
   - Node.js
-      - [Node.js Backend Documentation](nodejs-back/README.md)
+      - [Node.js Documentation](nodejs-back/README.md)
 - Frontend
   - React
-    - [React Frontend Documentation](react-front/README.md)
+    - [React Documentation](react-front/README.md)
   - Angular
     - [Angular Frontend Documentation](angular-front/README.md)
-
-## Website Layout
-![image](artifacts/website.jpg)
 
 ## System Architecture
 
@@ -76,3 +73,6 @@ A demonstration project showcasing basic CRUD (Create, Read, Update, Delete) ope
 - Description (text)
 - Status (To Do, In Progress, Done)
 - Created and updated timestamps
+
+## Website Layout
+![image](artifacts/website.jpg)
